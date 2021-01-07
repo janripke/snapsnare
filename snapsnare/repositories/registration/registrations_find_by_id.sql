@@ -1,0 +1,1 @@
+select * from registrations where id=:id and active=1

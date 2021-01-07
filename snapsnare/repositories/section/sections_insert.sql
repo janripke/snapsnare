@@ -1,0 +1,1 @@
+insert into sections (uuid, name, endpoint, url, rle_id) values (:uuid, :name, :endpoint, :url, :rle_id) returning id

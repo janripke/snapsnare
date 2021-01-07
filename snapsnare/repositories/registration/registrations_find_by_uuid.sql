@@ -1,0 +1,1 @@
+select * from registrations where uuid=:uuid and active=1

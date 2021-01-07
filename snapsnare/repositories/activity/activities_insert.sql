@@ -1,0 +1,1 @@
+insert into activities (uuid, usr_id, stn_id, content, rendering) values (:uuid, :usr_id, :stn_id, :content, :rendering) returning id

@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Registraties</h4>
+        <h6>Overzicht van de aanmeldingen</h6>
+        <hr>
+
+        {% for registration in registrations %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><span class="badge bg-secondary">{{registration.state}}</span></h5>
+                <h5 class="card-title"><a class="snapsnare-link-gray" href="/registration?uuid={{registration.uuid}}">{{registration.username}}</a>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{registration.first_name}} {{registration.last_name}} .
+                    {{registration.role}} . {{registration.created_at_formatted}}</h6>
+                {% if registration.state=='new' %}
+                <a href="/activate?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Activeren</a>
+                {% endif %}
+                {% if registration.state=='new' %}
+                <a href="/reject?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Afwijzen</a>
+                {% endif %}
+                {% if registration.state=='rejected' %}
+                <a href="/recover?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Herstellen</a>
+                {% endif %}
+                {% if registration.state=='approved' %}
+                <a href="/block?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Blokkeren</a>
+                <a href="/terminate?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Beëindigen</a>
+                {% endif %}
+                {% if registration.state=='blocked' %}
+                <a href="/release?uuid={{registration.uuid}}" class="card-link snapsnare-link-green">Opheffen</a>
+                {% endif %}
+            </div>
+        </div>
+        <p></p>
+        {% endfor %}
+    </div>
+</div>

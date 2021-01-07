@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img class="png" src="static/snapsnare.png"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% for section in sections %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{section.url}}?section={{section.uuid}}">{{section.name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="navbar-nav head-menu">
+                {% if session.username %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile?uuid={{session.uuid}}">{{session.username}}</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Registeren</a>
+                </li>
+                {% if not session.username %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Inloggen</a>
+                    </li>
+                {% endif %}
+                {% if session.username %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Uitloggen</a>
+                    </li>
+                {% endif %}
+                {% if (session.username and session.role=='admin') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">Instellingen</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<p></p>
+

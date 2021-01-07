@@ -1,0 +1,1 @@
+select * from roles where role=:role and active=1

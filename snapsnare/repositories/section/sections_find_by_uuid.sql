@@ -1,0 +1,1 @@
+select * from sections where uuid=:uuid and active=1

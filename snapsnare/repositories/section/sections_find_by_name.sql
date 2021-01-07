@@ -1,0 +1,1 @@
+select * from sections where name=:name and active=1

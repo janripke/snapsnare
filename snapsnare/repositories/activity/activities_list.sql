@@ -1,0 +1,1 @@
+select * from activities where active=1

@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Profiel</h4>
+        <h6>Wijzig hier je profielgegevens.</h6>
+        <hr>
+
+        <form action="{{ url_for('profile.show')}}?uuid={{user.uuid}}" id="profile-form" class="form-signin ajax"
+              method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" class="form-control" name="username" aria-describedby="emailHelp"
+                       required readonly="readonly" value="{{ user.username }}">
+                <div id="emailHelp" class="form-text">We delen je email adres nooit met anderen.</div>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Rol</label>
+                <input id="role" type="text" class="form-control" name="role" required readonly="readonly"
+                       value="{{user.role}}">
+            </div>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Voornaam</label>
+                <input id="firstName" type="text" class="form-control" name="first_name" required autofocus
+                       value="{{user.first_name}}">
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Achternaam</label>
+                <input id="lastName" type="text" class="form-control" name="last_name" required
+                       value="{{user.last_name}}">
+            </div>
+
+            <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{user.uuid}}">
+            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+        </form>
+    </div>
+</div>

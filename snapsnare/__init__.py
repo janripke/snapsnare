@@ -1,0 +1,12 @@
+__version__ = '0.0.1-dev0'
+
+__title__ = 'snapsnare'
+__description__ = 'snapsnare the sample base for musicians'
+__uri__ = 'https://github.com/janripke/snapsnare.git'
+__doc__ = __description__ + ' <' + __uri__ + '>'
+
+__author__ = 'Jan Ripke'
+__email__ = 'janripke@gmail.com'
+
+__license__ = 'GNU General Public License v3 or later (GPLv3+)'
+__copyright__ = 'Copyleft (l) 2016-2020 Jan Ripke'

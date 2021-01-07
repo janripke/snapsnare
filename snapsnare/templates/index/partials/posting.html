@@ -1,0 +1,8 @@
+{% if (session.username and posting.section_role==session.role) %}
+  <div class="card">
+    <div class="card-body">
+      <a href="/posting?section={{posting.section}}"><input id="role" type="text" class="form-control" name="role" readonly="readonly" value="Schrijf iets..."></a>
+    </div>
+  </div>
+  <p></p>
+{% endif %}

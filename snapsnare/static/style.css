@@ -1,0 +1,20 @@
+.btn-snapsnare {
+    color : white;
+    background-color : #009c2bff;
+}
+
+a.snapsnare-link-gray:link {
+    color : gray;
+}
+
+a.snapsnare-link-gray:visited {
+    color : gray;
+}
+
+a.snapsnare-link-green:link {
+    color : #009c2bff;
+}
+
+a.snapsnare-link-green:visited {
+    color : #009c2bff;
+}

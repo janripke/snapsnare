@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Section</h4>
+        <h6>Wijzig sectie details.</h6>
+        <hr>
+
+        <form action="{{ url_for('section.show')}}?uuid={{section.uuid}}" id="profile-form" class="form-signin ajax"
+              method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Naam</label>
+                <input id="name" type="text" class="form-control" name="name" required autofocus
+                       value="{{section.name}}">
+            </div>
+            <div class="mb-3">
+                <label for="endpoint" class="form-label">Logische naam</label>
+                <input id="endpoint" type="text" class="form-control" name="endpoint" required
+                       value="{{section.endpoint}}">
+            </div>
+            <div class="mb-3">
+                <label for="url" class="form-label">URL</label>
+                <input id="url" type="text" class="form-control" name="url" required value="{{section.url}}">
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Rol</label>
+                <select id="role" class="form-select" name="role">
+                    {% for role in roles %}
+                    {% if section.role==role.role %}
+                    <option selected value="{{role.role}}">{{role.role}}</option>
+                    {% endif %}
+                    {% if section.role!=role.role %}
+                    <option value="{{role.role}}">{{role.role}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+
+<!--            <input id="role" type="hidden" name="role" class="form-control" value="{{section.role}}">-->
+            <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{section.uuid}}">
+            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+        </form>
+    </div>
+</div>
