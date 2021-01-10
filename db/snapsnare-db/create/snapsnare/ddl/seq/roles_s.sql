@@ -1,1 +1,0 @@
-create sequence roles_s;

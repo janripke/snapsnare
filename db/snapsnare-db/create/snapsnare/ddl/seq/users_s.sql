@@ -1,1 +1,0 @@
-create sequence users_s;
