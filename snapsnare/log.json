@@ -2,7 +2,6 @@
     "version": 1,
     "formatters": {
         "standard": {
-            "()": "convoy.system.logger.JobNameFormatter",
             "format": "%(asctime)s %(name)s %(levelname)s %(module)s %(funcName)s:%(lineno)s - %(message)s"
         }
     },

@@ -78,7 +78,7 @@ setup(
         'paprika_connector'
     ],
     dependency_links=[
-        "git+https://github.com/janripke/paprika-connector.git@0.0.2#egg=paprika_connector",
+        "git+https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika_connector",
     ],
     package_data={
         'snapsnare': [
