@@ -18,7 +18,8 @@ https://stackoverflow.com/questions/43685799/postgres-uuid-type-error
 
 * language support
   * build in language support
-
+  
+* resolve beats per minute in audio files.
 * remove uuid (postgresql) from insert scripts, should be protected, so we can commit to git
 * remove the passwords from the test.
 * remove the postgresql credentials from the db configuration, should be in .noora

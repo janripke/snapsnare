@@ -7,7 +7,7 @@
         <form action="{{ url_for('posting.show')}}" id="posting-form" class="form-signin ajax" method="post"
               enctype="multipart/form-data">
             <div class="mb-3">
-                <textarea class="form-control" id="content" name="content" rows="3">{{posting.content}}</textarea>
+                <textarea class="form-control" id="content" name="content" rows="6">{{posting.content}}</textarea>
             </div>
             {% if not posting.rendering %}
             <div class="mb-3 form-check">
