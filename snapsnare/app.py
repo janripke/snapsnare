@@ -34,6 +34,7 @@ from snapsnare.templates.terminate.terminate import terminate
 from snapsnare.templates.registration.registration import registration
 from snapsnare.templates.password.password import password
 from snapsnare.templates.posting.posting import posting
+from snapsnare.templates.posting.delete import posting_delete
 from snapsnare.templates.sections.sections import sections
 from snapsnare.templates.section.section import section
 from snapsnare.templates.login.login import login
@@ -93,6 +94,7 @@ application.register_blueprint(terminate)
 application.register_blueprint(registration)
 application.register_blueprint(password)
 application.register_blueprint(posting)
+application.register_blueprint(posting_delete)
 application.register_blueprint(sections)
 application.register_blueprint(section)
 
