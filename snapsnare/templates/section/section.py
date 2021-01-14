@@ -24,6 +24,8 @@ def show():
     section_repository = SectionRepository(connector)
     role_repository = RoleRepository(connector)
 
+    sections = section_repository.list()
+
     role = session.get('role', 'user')
     if role != 'admin':
         return redirect(url_for('login.show'))
@@ -41,12 +43,12 @@ def show():
             section_['role'] = role['role']
 
             connector.close()
-            return render_template('section/section.html', section=section_, roles=roles)
+            return render_template('section/section.html', sections=sections, section=section_, roles=roles)
 
         section_ = {
         }
 
-        return render_template('section/section.html', section=section_, roles=roles)
+        return render_template('section/section.html', sections=sections, section=section_, roles=roles)
 
     if request.method == 'POST':
         uuid_ = request.form['uuid']
@@ -54,7 +56,7 @@ def show():
         endpoint = request.form['endpoint']
         url = request.form['url']
         role = request.form['role']
-
+        nav_ind = request.form.get('nav_ind', 0)
         role = role_repository.find_by_role(role)
 
         if uuid_:
@@ -63,7 +65,8 @@ def show():
                 'name': name,
                 'endpoint': endpoint,
                 'url': url,
-                'rle_id': role['id']
+                'rle_id': role['id'],
+                'nav_ind': nav_ind
             }
             section_repository.update(section_)
 
@@ -76,7 +79,8 @@ def show():
             'name': name,
             'endpoint': endpoint,
             'url': url,
-            'rle_id': role['id']
+            'rle_id': role['id'],
+            'nav_ind': nav_ind
         }
 
         section_repository.insert(section_)

@@ -33,6 +33,20 @@
                     {% endfor %}
                 </select>
             </div>
+            {% if not section.nav_ind %}
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="nav_ind_unchecked" name="nav_ind"
+                       value="1">
+                <label class="form-check-label" for="nav_ind_unchecked">Zichtbaar in menu</label>
+            </div>
+            {% endif %}
+            {% if section.nav_ind == 1 %}
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="nav_ind_checked" name="nav_ind" checked
+                       value="1">
+                <label class="form-check-label" for="nav_ind_checked">Zichtbaar in menu</label>
+            </div>
+            {% endif %}
 
 
 <!--            <input id="role" type="hidden" name="role" class="form-control" value="{{section.role}}">-->

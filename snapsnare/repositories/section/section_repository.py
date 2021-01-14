@@ -54,7 +54,8 @@ class SectionRepository(Repository):
             'name': section['name'],
             'endpoint': section['endpoint'],
             'url': section['url'],
-            'rle_id': section['rle_id']
+            'rle_id': section['rle_id'],
+            'nav_ind': section['nav_ind']
         }
 
         statement = self._load(SectionRepository.INSERT)
