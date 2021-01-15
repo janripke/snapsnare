@@ -86,29 +86,9 @@ def show():
                     index_ += 1
             activity['clips'] = clips
 
-
-
-        # # retrieve the files contained in the carousel folder
-        # carousel_folder = os.path.join(package_folder, 'static', 'd1cc7584-eb2e-4394-8ac0-28906bc844d2')
-        # slides = []
-        # index_ = 0
-        # if os.path.isdir(carousel_folder):
-        #     files = os.listdir(carousel_folder)
-        #     for file in files:
-        #         slide = {
-        #             'image': 'static/{}/{}'.format('d1cc7584-eb2e-4394-8ac0-28906bc844d2', file),
-        #             'index': index_
-        #         }
-        #         slides.append(slide)
-        #         index_ += 1
-
         # retrieve the expected role for this section
         role = role_repository.find_by_id(section['rle_id'])
-
-        posting = {
-            'section': section['uuid'],
-            'section_role': role['role']
-        }
+        section['role'] = role['role']
 
         # retrieve the sections to show in the navbar
         sections = section_repository.list()
@@ -125,4 +105,4 @@ def show():
 
         connector.close()
         return render_template('index/index.html', sections=sections, code=code, activities=activities,
-                               posting=posting, slides=slides, clips=clips)
+                               section=section, slides=slides, clips=clips)

@@ -1,7 +1,7 @@
-{% if (session.username and posting.section_role==session.role) %}
+{% if (session.username and session.role==section.role) %}
   <div class="card">
     <div class="card-body">
-      <a href="/posting?section={{posting.section}}"><input id="role" type="text" class="form-control" name="role" readonly="readonly" value="Schrijf iets..."></a>
+      <a href="/posting?section={{section.uuid}}"><input id="role" type="text" class="form-control" name="role" readonly="readonly" value="Schrijf iets..."></a>
     </div>
   </div>
   <p></p>
