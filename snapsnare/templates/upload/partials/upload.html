@@ -13,20 +13,12 @@
                        value="{{upload.title}}">
             </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col text-start"><b>Toevoegen aan je akkoord</b></div>
-                        <div class="col text-start">
-                            <label for="file-input">
-                                <i class="far fa-image fa-2x "></i>
-                            </label>
-                            <input id="file-input" type="file" name="file" accept="audio/*" multiple style="visibility:hidden;"/>
-                        </div>
-                        <div class="w-100"></div>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label for="file-upload" class="form-label">Upload akkoord</label>
+                 <input id="file-upload" type="file" name="file" accept="audio/*" />
             </div>
+
+
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{upload.uuid}}">
             <input id="user" type="hidden" name="user" class="form-control" value="{{upload.user}}">
             <input id="section" type="hidden" name="section" class="form-control" value="{{upload.section}}">

@@ -7,7 +7,7 @@ from flask_login import login_required
 import os.path
 import os
 import snapsnare
-from snapsnare.repositories.activity.activity_repository import ActivityRepository
+from snapsnare.repositories.snap.snap_repository import SnapRepository
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
@@ -17,12 +17,12 @@ from markupsafe import Markup
 snaps = Blueprint('snaps', __name__, template_folder='templates')
 
 
-@snaps.route('/snapsnare')
+@snaps.route('/snaps')
 @login_required
 def show():
     if request.method == 'GET':
         connector = current_app.connector
-        activity_repository = ActivityRepository(connector)
+        snap_repository = SnapRepository(connector)
         user_repository = UserRepository(connector)
         role_repository = RoleRepository(connector)
         section_repository = SectionRepository(connector)
@@ -34,60 +34,23 @@ def show():
             # no uuid_ is given, so Home is assumed
             section = section_repository.find_by_name('Home')
 
-        activities = activity_repository.list_by_stn_id(section.get('id', -1))
+        snaps_ = snap_repository.list()
 
         properties = current_app.properties
 
-        for activity in activities:
-            user = user_repository.find_by_id(activity['usr_id'])
+        for snap in snaps_:
+            user = user_repository.find_by_id(snap['usr_id'])
             role = role_repository.find_by_id(user['rle_id'])
 
-            content = activity['content']
-            if content:
-                content = content.replace('\n', '<br>')
+            snap['username'] = user.get('username')
+            snap['first_name'] = user.get('first_name')
+            snap['last_name'] = user.get('last_name')
+            snap['role'] = role.get('role')
+            snap['section'] = section['uuid']
 
-            activity['username'] = user.get('username')
-            activity['first_name'] = user.get('first_name')
-            activity['last_name'] = user.get('last_name')
-            activity['role'] = role.get('role')
-            activity['section'] = section['uuid']
-            activity['content'] = Markup(content)
-            activity['slide_count'] = 0
+            dt_created_at = datetime.strptime(snap['created_at'], '%Y-%m-%d %H:%M:%S.%f')
+            snap['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
 
-            dt_created_at = datetime.strptime(activity['created_at'], '%Y-%m-%d %H:%M:%S.%f')
-            activity['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
-
-            # for now we only use .png, .jpg and .gif images
-            slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
-            slides = []
-            if os.path.isdir(slides_folder):
-                files = Folder(slides_folder).listdir(filters='.png;.jpg;.gif')
-                activity['slide_count'] = len(files)
-                index_ = 0
-                for file in files:
-                    slide = {
-                        'url': '/static/{}/{}'.format(activity['uuid'], file),
-                        'index': index_
-                    }
-                    slides.append(slide)
-                    index_ += 1
-            activity['slides'] = slides
-
-            # for now we only use .mp4
-            clips_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
-            clips = []
-            if os.path.isdir(clips_folder):
-                files = Folder(clips_folder).listdir(filters='.mp4')
-                activity['clip_count'] = len(files)
-                index_ = 0
-                for file in files:
-                    clip = {
-                        'url': '/static/{}/{}'.format(activity['uuid'], file),
-                        'index': index_
-                    }
-                    clips.append(clip)
-                    index_ += 1
-            activity['clips'] = clips
 
         # retrieve the expected role for this section
         role = role_repository.find_by_id(section['rle_id'])
@@ -107,4 +70,4 @@ def show():
         }
 
         connector.close()
-        return render_template('snaps/snaps.html', sections=sections, code=code, activities=activities, section=section)
+        return render_template('snaps/snaps.html', sections=sections, code=code, snaps=snaps_, section=section)

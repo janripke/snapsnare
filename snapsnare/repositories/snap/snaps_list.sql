@@ -1,0 +1,1 @@
+select * from snaps where active=1

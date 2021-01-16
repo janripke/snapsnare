@@ -1,0 +1,1 @@
+insert into snaps (uuid, usr_id, title) values (:uuid, :usr_id, :title) returning id

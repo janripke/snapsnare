@@ -13,7 +13,7 @@ from flask_login import login_required
 
 from snapsnare.system import dictionaries
 from snapsnare.repositories.user.user_repository import UserRepository
-from snapsnare.repositories.activity.activity_repository import ActivityRepository
+from snapsnare.repositories.snap.snap_repository import SnapRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.system import storage
@@ -41,15 +41,16 @@ def show():
         if uuid_:
             # contains the uuid of the section
 
-            activity_repository = ActivityRepository(connector)
-            activity = activity_repository.find_by_uuid(uuid_)
+            snap_repository = SnapRepository(connector)
+            snap = snap_repository.find_by_uuid(uuid_)
 
             upload_ = {
                 'section': section_uuid,
                 'uuid': uuid_,
                 'user': user['uuid'],
                 'first_name': user['first_name'],
-                'last_name': user['last_name']
+                'last_name': user['last_name'],
+                'title': snap['title']
             }
             connector.close()
             return render_template('upload/upload.html', sections=sections, upload=upload_)
@@ -75,63 +76,60 @@ def show():
         connector.close()
         return render_template('upload/upload.html', sections=sections, upload=upload_)
 
-    uuid_ = request.form['uuid']
-    user_uuid = request.form['user']
-    section_uuid = request.form['section']
-    content = request.form['content']
-    rendering = request.form.get('rendering')
+    if request.method == 'POST':
+        uuid_ = request.form['uuid']
+        user_uuid = request.form['user']
+        section_uuid = request.form['section']
+        title = request.form['title']
 
-    # image_as_background = request.form['image_as_background']
-    # print('image_as_background', image_as_background)
+        # image_as_background = request.form['image_as_background']
+        # print('image_as_background', image_as_background)
 
-    # store the uploaded files if given.
-    files = request.files
+        # store the uploaded files if given.
+        files = request.files
 
-    activity_repository = ActivityRepository(connector)
-    section = section_repository.find_by_uuid(section_uuid)
+        snap_repository = SnapRepository(connector)
+        section = section_repository.find_by_uuid(section_uuid)
 
-    if uuid_:
+        if uuid_:
+            # persist the uploaded files if any.
+            storage.persist_files(uuid_, files)
+
+            snap_ = {
+                'uuid': uuid_,
+                'title': title
+            }
+
+            snap_repository.update(snap_)
+            connector.commit()
+            connector.close()
+
+            flash('Je akkoord is bijgewerkt', 'info')
+            return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
+
+        user = user_repository.find_by_uuid(user_uuid)
+
+        # check messing with the posting in relation to the section
+
+        role = role_repository.find_by_id(section['rle_id'])
+
+        if session['role'] != role['role']:
+            return redirect(url_for('login.show'))
+
+        # generate a uuid, reflecting functional key of the activity
+        uuid_ = str(uuid4())
+
         # persist the uploaded files if any.
         storage.persist_files(uuid_, files)
 
-        activity = {
+        snap_ = {
             'uuid': uuid_,
-            'content': content,
-            'rendering': rendering
+            'usr_id': user['id'],
+            'title': title
         }
+        snap_repository.insert(snap_)
 
-        activity_repository.update(activity)
         connector.commit()
         connector.close()
-
-        flash('Je bericht is bijgewerkt', 'info')
+        flash('Je akkoord is geplaatst', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
-
-    user = user_repository.find_by_uuid(user_uuid)
-
-    # check messing with the posting in relation to the section
-
-    role = role_repository.find_by_id(section['rle_id'])
-
-    if session['role'] != role['role']:
-        return redirect(url_for('login.show'))
-
-    # generate a uuid, reflecting functional key of the activity
-    uuid_ = str(uuid4())
-
-    # persist the uploaded files if any.
-    storage.persist_files(uuid_, files)
-
-    activity = {
-        'uuid': uuid_,
-        'usr_id': user['id'],
-        'stn_id': section['id'],
-        'content': content,
-        'rendering': rendering
-    }
-    activity_repository.insert(activity)
-
-    connector.commit()
-    connector.close()
-    flash('Je akkoord is geplaatst', 'info')
-    return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))

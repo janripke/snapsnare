@@ -3,3 +3,4 @@ https://github.com/audiojs/web-audio-stream
 https://github.com/AnthumChris/fetch-stream-audio
 https://www.html5rocks.com/en/tutorials/webaudio/intro/
 https://www.w3.org/TR/webaudio/
+https://www.html5rocks.com/en/tutorials/file/xhr2/
