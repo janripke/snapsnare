@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Akkoord maken</h4>
+        <h5 class="card-title">{{upload.first_name}} {{upload.last_name}}</h5>
+        <hr>
+
+        <form action="{{ url_for('upload.show')}}" id="upload-form" class="form-signin ajax" method="post"
+              enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Titel</label>
+                <input id="title" type="text" class="form-control" name="title" required autofocus
+                       value="{{upload.title}}">
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col text-start"><b>Toevoegen aan je akkoord</b></div>
+                        <div class="col text-start">
+                            <label for="file-input">
+                                <i class="far fa-image fa-2x "></i>
+                            </label>
+                            <input id="file-input" type="file" name="file" accept="audio/*" multiple style="visibility:hidden;"/>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                </div>
+            </div>
+            <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{upload.uuid}}">
+            <input id="user" type="hidden" name="user" class="form-control" value="{{upload.user}}">
+            <input id="section" type="hidden" name="section" class="form-control" value="{{upload.section}}">
+            <p></p>
+            <button type="submit" class="btn btn-snapsnare w-100">Plaatsen</button>
+        </form>
+    </div>
+</div>

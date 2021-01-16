@@ -1,0 +1,92 @@
+{% for activity in activities %}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col text-start"><h6>{{activity.first_name}} {{activity.last_name}}</h6></div>
+            <div class="col text-end">
+                {% if (session.username and session.role==activity.role) %}
+<!--                <button type="button" class="btn btn-default"-->
+<!--                        onclick="window.location.href='/posting?section={{activity.section}}&uuid={{activity.uuid}}';">-->
+<!--                    <i class="fas fa-ellipsis-h"></i>-->
+<!--                </button>-->
+                <div class="dropdown">
+                    <a class="btn btn-secondary" href="#" role="button" id="dropdownPosting"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownPosting">
+                        <li><a class="dropdown-item" href="/posting?section={{activity.section}}&uuid={{activity.uuid}}"><i class="far fa-edit"></i> Bericht bewerken</a></li>
+                        <li><a class="dropdown-item" href="/posting/delete?section={{activity.section}}&uuid={{activity.uuid}}"><i class="fas fa-times"></i> Bericht verwijderen</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+        </div>
+        <div class="col">
+            <h6 class="card-subtitle mb-2 text-muted">{{activity.role}} .
+                {{activity.created_at_formatted}}</h6>
+        </div>
+    </div>
+    {% if not activity.rendering and activity.content %}
+    <div class="card-body">
+        {{activity.content}}
+    </div>
+    {% endif %}
+    {% if activity.rendering=="background" and activity.slide_count == 1 %}
+    <div class="card-body" style="background-image:url('{{activity.slides[0].url}}'); background-repeat: repeat;">
+        {{activity.content}}
+    </div>
+    {% endif %}
+
+    {% if not activity.rendering and activity.slide_count == 1 %}
+    <img class="card-img-top w-100" src="{{activity.slides[0].url}}">
+    {% endif %}
+
+    {% if not activity.rendering and activity.slide_count > 1 %}
+    <div id="carousel-{{activity.uuid}}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for slide in activity.slides %}
+            {% if slide.index==0 %}
+            <li data-bs-target="#carousel-{{activity.uuid}}" data-bs-slide-to="0" class="active"></li>
+            {% endif %}
+            {% if slide.index!=0 %}
+            <li data-bs-target="#carousel-{{activity.uuid}}" data-bs-slide-to="{{slide.index}}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for slide in activity.slides %}
+            {% if slide.index==0 %}
+            <div class="carousel-item active">
+                <img src="{{slide.url}}" class="d-block w-100">
+                <!--          <img src="{{slide.url}}" class="d-block w-100" style="filter: grayscale(100%);">-->
+            </div>
+            {% endif %}
+            {% if slide.index!=0 %}
+            <div class="carousel-item">
+                <img src="{{slide.url}}" class="d-block w-100">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carousel-{{activity.uuid}}" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-{{activity.uuid}}" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% for clip in activity.clips %}
+    <video class="w-100" src="{{clip.url}}" controls>
+        Uw browser ondersteunt het element <code>video</code> niet.
+    </video>
+    {% endfor %}
+</div>
+<p></p>
+{% endfor %}

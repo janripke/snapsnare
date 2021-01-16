@@ -2,6 +2,8 @@ from datetime import datetime
 from flask import Blueprint, render_template
 from flask import request
 from flask import current_app
+from flask_login import login_required
+
 import os.path
 import os
 import snapsnare
@@ -11,10 +13,12 @@ from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
-index = Blueprint('index', __name__, template_folder='templates')
+
+snaps = Blueprint('snaps', __name__, template_folder='templates')
 
 
-@index.route('/')
+@snaps.route('/snapsnare')
+@login_required
 def show():
     if request.method == 'GET':
         connector = current_app.connector
@@ -103,4 +107,4 @@ def show():
         }
 
         connector.close()
-        return render_template('index/index.html', sections=sections, code=code, activities=activities, section=section)
+        return render_template('snaps/snaps.html', sections=sections, code=code, activities=activities, section=section)

@@ -37,6 +37,8 @@ from snapsnare.templates.posting.posting import posting
 from snapsnare.templates.posting.delete import posting_delete
 from snapsnare.templates.sections.sections import sections
 from snapsnare.templates.section.section import section
+from snapsnare.templates.upload.upload import upload
+from snapsnare.templates.snaps.snaps import snaps
 from snapsnare.templates.login.login import login
 from snapsnare.templates.login.user import User
 
@@ -97,6 +99,8 @@ application.register_blueprint(posting)
 application.register_blueprint(posting_delete)
 application.register_blueprint(sections)
 application.register_blueprint(section)
+application.register_blueprint(snaps)
+application.register_blueprint(upload)
 
 
 @login_manager.user_loader
