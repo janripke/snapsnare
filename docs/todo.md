@@ -8,7 +8,8 @@ postgres, but not for the user snapsnare_owner.
 reference:
 https://stackoverflow.com/questions/43685799/postgres-uuid-type-error
 
-
+* add the field chord_progression (akkoorden schema) to the upload, not required.
+* footer alligned in the middle, use 3 sections as in the body.
 * activities
   * format the active timestamp to 12 December om 12:12
 

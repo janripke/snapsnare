@@ -30,9 +30,22 @@
         </div>
         <div class="row">
             <div class="col text-start">{{snap.role}} .
-                    {{snap.created_at_formatted}}</div>
+                {{snap.created_at_formatted}}
+            </div>
             <div class="w-100"></div>
         </div>
+
+
+        <div class="row">
+            <div class="col text-start">
+                <audio id="music-{{snap.uuid}}" controls>
+                     <source src="{{snap.url}}">
+                </audio>
+            </div>
+            <div class="w-100"></div>
+        </div>
+
+
     </div>
 </div>
 <p></p>

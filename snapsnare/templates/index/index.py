@@ -57,7 +57,7 @@ def show():
             slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
             slides = []
             if os.path.isdir(slides_folder):
-                files = Folder(slides_folder).listdir(filters='.png;.jpg;.gif')
+                files = Folder(slides_folder).listdir(filters='.png;.jpg;.gif;.jpeg')
                 activity['slide_count'] = len(files)
                 index_ = 0
                 for file in files:
@@ -73,7 +73,7 @@ def show():
             clips_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
             clips = []
             if os.path.isdir(clips_folder):
-                files = Folder(clips_folder).listdir(filters='.mp4')
+                files = Folder(clips_folder).listdir(filters='.mp4;.MOV')
                 activity['clip_count'] = len(files)
                 index_ = 0
                 for file in files:

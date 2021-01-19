@@ -51,6 +51,11 @@ def show():
             dt_created_at = datetime.strptime(snap['created_at'], '%Y-%m-%d %H:%M:%S.%f')
             snap['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
 
+            clips_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], snap['uuid'])
+            if os.path.isdir(clips_folder):
+                files = Folder(clips_folder).listdir(filters='.wav;.mp3;.ogg')
+                if len(files) != 0:
+                    snap['url'] = '/static/{}/{}'.format(snap['uuid'], files[0])
 
         # retrieve the expected role for this section
         role = role_repository.find_by_id(section['rle_id'])

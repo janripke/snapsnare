@@ -37,6 +37,13 @@ create the snapsnare-ds.json in ~/.snapsnare folder: paste the following into th
 }
 ```
 
+### install dependencies
+For converting m4a to wav, snapsnare uses pydub. This package dependend on the ffmpeg library.
+Install ffmpeg through execution, as root, the following command:
+```shell
+sudo dnf install ffmpeg 
+```
+
 ### install snapsnare
 ```shell
 pip3 install git+https://github.com/janripke/snapsnare.git@0.0.1-dev0#egg=snapsnare

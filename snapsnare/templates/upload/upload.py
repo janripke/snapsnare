@@ -92,6 +92,7 @@ def show():
         section = section_repository.find_by_uuid(section_uuid)
 
         if uuid_:
+
             # persist the uploaded files if any.
             storage.persist_files(uuid_, files)
 
@@ -121,6 +122,9 @@ def show():
 
         # persist the uploaded files if any.
         storage.persist_files(uuid_, files)
+
+        # check if m4a files were uploaded and convert them to wav
+        storage.convert_m4a_files(uuid_)
 
         snap_ = {
             'uuid': uuid_,
