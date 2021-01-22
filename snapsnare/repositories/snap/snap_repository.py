@@ -30,7 +30,9 @@ class SnapRepository(Repository):
         params = {
             'uuid': uuid_,
             'usr_id': snap['usr_id'],
-            'title': snap['title']
+            'title': snap['title'],
+            'ist_id': snap.get('ist_id'),
+            'chord_schema': snap.get('chord_schema')
         }
 
         statement = self._load(SnapRepository.INSERT)

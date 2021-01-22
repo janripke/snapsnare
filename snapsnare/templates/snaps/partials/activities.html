@@ -14,10 +14,10 @@
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownPosting">
                         <li><a class="dropdown-item" href="/upload?section={{snap.section}}&uuid={{snap.uuid}}"><i
-                                class="far fa-edit"></i> Akkoord bewerken</a></li>
+                                class="far fa-edit"></i> Sample bewerken</a></li>
                         <li><a class="dropdown-item"
                                href="/upload/delete?section={{snap.section}}&uuid={{snap.uuid}}"><i
-                                class="fas fa-times"></i> Akkoord verwijderen</a></li>
+                                class="fas fa-times"></i> Sample verwijderen</a></li>
                     </ul>
                 </div>
                 {% endif %}
@@ -25,7 +25,7 @@
             <div class="w-100"></div>
         </div>
         <div class="row">
-            <div class="col text-start">{{snap.title}}</div>
+            <div class="col text-start">{{snap.title}} ({{snap.chord_schema}})</div>
             <div class="w-100"></div>
         </div>
         <div class="row">

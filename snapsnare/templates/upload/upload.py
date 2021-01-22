@@ -50,7 +50,8 @@ def show():
                 'user': user['uuid'],
                 'first_name': user['first_name'],
                 'last_name': user['last_name'],
-                'title': snap['title']
+                'title': snap['title'],
+                'chord_schema': snap['chord_schema']
             }
             connector.close()
             return render_template('upload/upload.html', sections=sections, upload=upload_)
@@ -81,6 +82,7 @@ def show():
         user_uuid = request.form['user']
         section_uuid = request.form['section']
         title = request.form['title']
+        chord_schema = request.form['chord_schema']
 
         # image_as_background = request.form['image_as_background']
         # print('image_as_background', image_as_background)
@@ -98,14 +100,15 @@ def show():
 
             snap_ = {
                 'uuid': uuid_,
-                'title': title
+                'title': title,
+                'chord_schema': chord_schema
             }
 
             snap_repository.update(snap_)
             connector.commit()
             connector.close()
 
-            flash('Je akkoord is bijgewerkt', 'info')
+            flash('Je sample is bijgewerkt', 'info')
             return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
 
         user = user_repository.find_by_uuid(user_uuid)
@@ -129,11 +132,12 @@ def show():
         snap_ = {
             'uuid': uuid_,
             'usr_id': user['id'],
-            'title': title
+            'title': title,
+            'chord_schema': chord_schema
         }
         snap_repository.insert(snap_)
 
         connector.commit()
         connector.close()
-        flash('Je akkoord is geplaatst', 'info')
+        flash('Je sample is geplaatst', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))

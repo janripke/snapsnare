@@ -1,0 +1,1 @@
+select * from instruments where id=:id and active=1
