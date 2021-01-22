@@ -13,7 +13,7 @@ from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
-
+from snapsnare.system import utils
 snaps = Blueprint('snaps', __name__, template_folder='templates')
 
 
@@ -55,7 +55,9 @@ def show():
             if os.path.isdir(clips_folder):
                 files = Folder(clips_folder).listdir(filters='.wav;.mp3;.ogg')
                 if len(files) != 0:
+                    print(files[0])
                     snap['url'] = '/static/{}/{}'.format(snap['uuid'], files[0])
+                    snap['type'] = utils.html_audio_source_type(files[0])
 
         # retrieve the expected role for this section
         role = role_repository.find_by_id(section['rle_id'])

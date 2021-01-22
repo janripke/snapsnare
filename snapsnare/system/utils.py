@@ -11,6 +11,21 @@ from logging.config import dictConfig
 FILE_NOT_FOUND = "File '{}' not found."
 
 
+def html_audio_source_type(path):
+    result = ''
+    if path:
+        filename, extension = os.path.splitext(path)
+        if extension.lower().lstrip('.') == 'wav':
+            return 'audio/wav'
+        if extension.lower().lstrip('.') == 'mp3':
+            return 'audio/mpeg'
+        if extension.lower().lstrip('.') == 'ogg':
+            return 'audio/ogg'
+
+    # if we have to guess, then audio/mpeg is returned
+    return 'audio/mpeg'
+
+
 def load_logger(properties, filename, name=None):
     path = lookup(properties, filename)
 
