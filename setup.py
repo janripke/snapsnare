@@ -85,7 +85,7 @@ setup(
     ],
     package_data={
         'snapsnare': [
-            '*.json', '*/*/*.sql'
+            '*.json', 'repositories/*/*.sql', 'templates/*/*.html', 'templates/*/*/*.html'
         ]
     },
     entry_points={
