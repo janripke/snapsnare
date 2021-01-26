@@ -68,7 +68,7 @@ setup(
     packages=find_packages(exclude=['db', 'docs', 'snippets', 'tests', 'venv']),
     include_package_data=True,
     install_requires=[
-        'flask',
+        'Flask',
         'flask_restful',
         'flask-jwt-extended',
         'flask-login',
