@@ -9,8 +9,10 @@ reference:
 https://stackoverflow.com/questions/43685799/postgres-uuid-type-error
 
 * add the field chord_progression/chord_schema (akkoorden schema) to the upload, not required.
-* convert audio to musical notes  
-* footer aligned in the middle, use 3 sections as in the body.
+* add replies to activities  
+* convert audio to musical notes
+* converted audio (to wav) does not play in firefox (linux) 
+
 * activities
   * format the active timestamp to 12 December om 12:12
 
@@ -49,3 +51,7 @@ https://stackoverflow.com/questions/43685799/postgres-uuid-type-error
   the expected flow is : create a reset request, send an email containing an url and an activation key.
   when the key is valid the user allowed to change the password.
 
+
+finished
+* add the field chord_progression/chord_schema (akkoorden schema) to the upload, not required.
+* footer aligned in the middle, use 3 sections as in the body.

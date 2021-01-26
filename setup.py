@@ -76,10 +76,12 @@ setup(
         'psycopg2-binary',
         'requests',
         'paprika_connector',
+        'harc',
         'pydub'
     ],
     dependency_links=[
         "git+https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika_connector",
+        "git+https://github.com/janripke/harc.git@1.0.33#egg=harc"
     ],
     package_data={
         'snapsnare': [

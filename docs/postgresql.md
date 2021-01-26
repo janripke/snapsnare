@@ -3,6 +3,7 @@ postgresql database installation
 
 This document describes the creation of the snapsnare database in the postgresql server.
 It is assumed that the postgresql server is installed and running.
+See https://fedoraproject.org/wiki/PostgreSQL for installing postgresql on Fedora. 
 
 ## check the status of the postgresql server
 
