@@ -68,10 +68,10 @@ setup(
     packages=find_packages(exclude=['db', 'docs', 'snippets', 'tests', 'venv']),
     include_package_data=True,
     install_requires=[
-        'Flask',
         'flask_restful',
         'flask-jwt-extended',
         'flask-login',
+        'flask',
         'click',
         'psycopg2-binary',
         'requests',
