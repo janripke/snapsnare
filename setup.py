@@ -64,7 +64,7 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 3 :: Only',
     ],
-    keywords='sample setuptools development',
+    keywords='snapsnare wiki musicians',
     packages=find_packages(exclude=['db', 'docs', 'snippets', 'tests', 'venv']),
     include_package_data=True,
     install_requires=[
