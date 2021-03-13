@@ -75,11 +75,8 @@ setup(
         'click',
         'psycopg2-binary',
         'requests',
-        'paprika-connector',
+        'git+https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika-connector',
         'pydub'
-    ],
-    dependency_links=[
-        "git+https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika-connector",
     ],
     package_data={
         'snapsnare': [
