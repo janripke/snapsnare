@@ -75,7 +75,7 @@ setup(
         'click',
         'psycopg2-binary',
         'requests',
-        'paprika-connector',
+        'paprika-connector==0.0.3',
         'pydub'
     ],
     dependency_links=[
