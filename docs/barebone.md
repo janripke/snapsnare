@@ -24,3 +24,11 @@ As root execute the following command
 ```shell
 $ dnf install git
 ```
+
+## install dynamic dns
+The idea is here that the WAN IP address is send to domain name server provider, in our case strato.
+
+Execute the following command to install ddclient:
+```shell
+$ dnf install ddclient
+```

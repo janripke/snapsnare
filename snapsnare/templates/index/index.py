@@ -54,7 +54,8 @@ def show():
             activity['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
 
             # for now we only use .png, .jpg and .gif images
-            slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
+            # slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
+            slides_folder = os.path.join(properties['current.dir'], 'assets', activity['uuid'])
             slides = []
             if os.path.isdir(slides_folder):
                 files = Folder(slides_folder).listdir(filters='.png;.jpg;.gif;.jpeg')
@@ -62,15 +63,16 @@ def show():
                 index_ = 0
                 for file in files:
                     slide = {
-                        'url': '/static/{}/{}'.format(activity['uuid'], file),
+                        'url': '/assets/{}/{}'.format(activity['uuid'], file),
                         'index': index_
                     }
                     slides.append(slide)
                     index_ += 1
             activity['slides'] = slides
 
-            # for now we only use .mp4
-            clips_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
+            # for now we only use .mp4 and .mov
+            # clips_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
+            clips_folder = os.path.join(properties['current.dir'], 'assets', activity['uuid'])
             clips = []
             if os.path.isdir(clips_folder):
                 files = Folder(clips_folder).listdir(filters='.mp4;.MOV')
@@ -78,7 +80,7 @@ def show():
                 index_ = 0
                 for file in files:
                     clip = {
-                        'url': '/static/{}/{}'.format(activity['uuid'], file),
+                        'url': '/assets/{}/{}'.format(activity['uuid'], file),
                         'index': index_
                     }
                     clips.append(clip)

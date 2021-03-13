@@ -11,7 +11,6 @@ from flask import redirect
 from flask import url_for
 from flask_login import login_required
 
-from snapsnare.system import dictionaries
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.snap.snap_repository import SnapRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
@@ -90,16 +89,18 @@ def show():
         # store the uploaded files if given.
         files = request.files
 
+        properties = current_app.properties
+
         snap_repository = SnapRepository(connector)
         section = section_repository.find_by_uuid(section_uuid)
 
         if uuid_:
 
             # persist the uploaded files if any.
-            storage.persist_files(uuid_, files)
+            storage.persist_files(properties, uuid_, files)
 
             # check if m4a files were uploaded and convert them to wav if not present
-            storage.convert_m4a_files(uuid_)
+            storage.convert_m4a_files(properties, uuid_)
 
             snap_ = {
                 'uuid': uuid_,
@@ -127,10 +128,10 @@ def show():
         uuid_ = str(uuid4())
 
         # persist the uploaded files if any.
-        storage.persist_files(uuid_, files)
+        storage.persist_files(properties, uuid_, files)
 
         # check if m4a files were uploaded and convert them to wav
-        storage.convert_m4a_files(uuid_)
+        storage.convert_m4a_files(properties, uuid_)
 
         snap_ = {
             'uuid': uuid_,

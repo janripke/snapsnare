@@ -11,6 +11,7 @@ from flask_login import logout_user
 from flask import redirect
 from flask import url_for
 from flask import session
+from flask import send_from_directory
 
 import snapsnare
 from paprika_connector.connectors.connector_factory import ConnectorFactory
@@ -54,7 +55,6 @@ properties = {
 }
 
 ds = utils.load_json(properties, 'snapsnare-ds.json')
-
 connector = ConnectorFactory.create_connector(ds)
 application.connector = connector
 application.properties = properties
@@ -125,6 +125,12 @@ def logout():
     session.pop('uuid')
     session.pop('role')
     return redirect(url_for('index.show'))
+
+
+@application.route('/assets/<path:filename>')
+def assets(filename):
+    assets_folder = os.path.join(properties['current.dir'], 'assets')
+    return send_from_directory(assets_folder, filename)
 
 
 @click.command()

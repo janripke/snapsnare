@@ -89,7 +89,7 @@ def show():
     # store the uploaded files if given.
     files = request.files
 
-
+    properties = current_app.properties
 
     # # create the upload folder for this posting, if not present
     # upload_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], uuid_)
@@ -107,7 +107,7 @@ def show():
 
     if uuid_:
         # persist the uploaded files if any.
-        storage.persist_files(uuid_, files)
+        storage.persist_files(properties, uuid_, files)
 
         activity = {
             'uuid': uuid_,
@@ -138,7 +138,7 @@ def show():
     uuid_ = str(uuid4())
 
     # persist the uploaded files if any.
-    storage.persist_files(uuid_, files)
+    storage.persist_files(properties, uuid_, files)
 
     activity = {
         'uuid': uuid_,

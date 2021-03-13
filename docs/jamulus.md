@@ -40,7 +40,15 @@
    $ cd jamulus-latest
    ```
 
-   Now compile the sources with the following commands (the last make may take several minutes to run):
+   Enter the following commands if you want to use Jamulus as a headless server:
+   ```shell
+   $ qmake-qt5 "CONFIG+=nosound headless" Jamulus.pro
+   $ make clean
+   $ make
+   $ make install
+   ```
+
+   Enter the following commands if you want to use Jamulus as a client and/or server:
    ```shell
    $ qmake-qt5 Jamulus.pro
    $ make clean
@@ -88,7 +96,7 @@
    IOSchedulingClass=realtime
    IOSchedulingPriority=0
 
-   ExecStart=/usr/local/bin/Jamulus -s -n -t -m "/home/jamulus/snapsnare" -R "/home/jamulus/recordings"
+   ExecStart=/usr/local/bin/Jamulus -s -n -m "/home/jamulus/status" -R "/home/jamulus/recordings"
 
    Restart=on-failure
    RestartSec=30
