@@ -75,7 +75,6 @@ setup(
         'click',
         'psycopg2-binary',
         'requests',
-        'https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika-connector',
         'pydub'
     ],
     package_data={
