@@ -77,6 +77,9 @@ setup(
         'requests',
         'pydub'
     ],
+    dependency_links=[
+        "git+https://github.com/janripke/paprika-connector.git@0.0.3#egg=paprika-connector",
+    ],
     package_data={
         'snapsnare': [
             '*.json', 'static/*', 'repositories/*/*.sql', 'templates/*/*.html', 'templates/*/*/*.html'
