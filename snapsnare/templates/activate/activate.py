@@ -35,6 +35,8 @@ def show():
             'password': registration['password'],
             'first_name': registration['first_name'],
             'last_name': registration['last_name'],
+            'nickname': registration['nickname'],
+            'phone_number': registration['phone_number'],
             'rgn_id': registration['id'],
             'rle_id': role['id']
         }

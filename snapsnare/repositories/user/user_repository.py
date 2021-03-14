@@ -57,6 +57,8 @@ class UserRepository(Repository):
             'password': user['password'],
             'first_name': user['first_name'],
             'last_name': user['last_name'],
+            'nickname': user['nickname'],
+            'phone_number': user['phone_number'],
             'rle_id': user['rle_id'],
             'rgn_id': user['rgn_id']
         }

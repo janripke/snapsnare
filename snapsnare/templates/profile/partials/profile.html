@@ -27,6 +27,16 @@
                 <input id="lastName" type="text" class="form-control" name="last_name" required
                        value="{{user.last_name}}">
             </div>
+            <div class="mb-3">
+                <label for="nickName" class="form-label">Bijnaam</label>
+                <input id="nickName" type="text" class="form-control" name="nickname"
+                       value="{{user.nickname}}">
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Telefoonnummer</label>
+                <input id="phoneNumber" type="text" class="form-control" name="phone_number"
+                   value="{{user.phone_number}}">
+            </div>
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{user.uuid}}">
             <button type="submit" class="btn btn-snapsnare">Opslaan</button>

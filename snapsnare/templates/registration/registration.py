@@ -49,6 +49,8 @@ def show():
     username = request.form['username']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+    nickname = request.form['nickname']
+    phone_number = request.form['phone_number']
     role = request.form['role']
 
     role = role_repository.find_by_role(role)
@@ -58,6 +60,8 @@ def show():
         'username': username,
         'first_name': first_name,
         'last_name': last_name,
+        'nickname': nickname,
+        'phone_number': phone_number,
         'rle_id': role['id']
     }
     registration_repository.update(registration_)
@@ -73,6 +77,8 @@ def show():
             'username': username,
             'first_name': first_name,
             'last_name': last_name,
+            'nickname': nickname,
+            'phone_number': phone_number,
             'rle_id': role['id']
         }
 
