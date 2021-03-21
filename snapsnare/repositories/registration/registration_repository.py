@@ -58,6 +58,8 @@ class RegistrationRepository(Repository):
             'password': password,
             'first_name': registration['first_name'],
             'last_name': registration['last_name'],
+            'nickname': registration['nickname'],
+            'phone_number': registration['phone_number'],
             'rle_id': registration['rle_id']
         }
 

@@ -44,11 +44,15 @@ def show():
     uuid_ = request.form['uuid']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+    nickname = request.form['nickname']
+    phone_number = request.form['phone_number']
 
     user = {
         'uuid': uuid_,
         'first_name': first_name,
-        'last_name': last_name
+        'last_name': last_name,
+        'nickname': nickname,
+        'phone_number': phone_number
     }
 
     # check messing with uuid's

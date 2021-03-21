@@ -33,6 +33,8 @@ def show():
         password = request.form['password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+        nickname = request.form['nickname']
+        phone_number = request.form['phone_number']
 
         registered = register_repository.is_registered(username)
         if registered:
@@ -48,6 +50,8 @@ def show():
             'uuid': str(uuid4()),
             'first_name': first_name,
             'last_name': last_name,
+            'nickname': nickname,
+            'phone_number': phone_number,
             'rle_id': role['id']
         }
 

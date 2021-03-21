@@ -23,6 +23,16 @@
                        value="{{registration.last_name}}">
             </div>
             <div class="mb-3">
+                <label for="nickName" class="form-label">Bijnaam</label>
+                <input id="nickName" type="text" class="form-control" name="nickname"
+                       value="{{registration.nickname}}">
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Telefoonnummer</label>
+                <input id="phoneNumber" type="text" class="form-control" name="phone_number"
+                       value="{{registration.phone_number}}">
+            </div>
+            <div class="mb-3">
                 <label for="role" class="form-label">Rol</label>
                 <select id="role" class="form-select" name="role">
                     {% for role in roles %}

@@ -1,1 +1,1 @@
-insert into registrations (uuid, username, password, first_name, last_name, rle_id) values (:uuid, :username, :password, :first_name, :last_name, :rle_id) returning id
+insert into registrations (uuid, username, password, first_name, last_name, nickname, phone_number, rle_id) values (:uuid, :username, :password, :first_name, :last_name, :nickname, :phone_number, :rle_id) returning id
