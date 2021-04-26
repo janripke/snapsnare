@@ -46,7 +46,7 @@ sudo dnf install ffmpeg
 
 ### install snapsnare
 ```shell
-pip3 install git+https://github.com/janripke/snapsnare.git@0.0.1-dev0#egg=snapsnare
+pip3 install git+https://github.com/janripke/snapsnare.git@0.0.2-dev0#egg=snapsnare
 ```
 
 ### run snapsnare
