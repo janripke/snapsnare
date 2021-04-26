@@ -20,9 +20,12 @@
    
    On Fedora:
    ```shell
-   sudo dnf install qt5-qtdeclarative-devel jack-audio-connection-kit-dbus jack-audio-connection-kit-devel
+   sudo dnf install qt5-qtdeclarative-devel jack-audio-connection-kit-dbus jack-audio-connection-kit-devel qt5-linguist
    sudo dnf install qt-devel
    ```
+
+   
+   
    
    Qjackctl: Optional, but recommended
 

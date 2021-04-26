@@ -9,8 +9,10 @@ from snapsnare.repositories.activity.activity_repository import ActivityReposito
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
+from snapsnare.repositories.jammer.jammer_repository import JammerRepository
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
+from snapsnare.system.requestors import RestRequest, BearerRequest
 index = Blueprint('index', __name__, template_folder='templates')
 
 
@@ -22,6 +24,7 @@ def show():
         user_repository = UserRepository(connector)
         role_repository = RoleRepository(connector)
         section_repository = SectionRepository(connector)
+        jammer_repository = JammerRepository(connector)
 
         # retrieve the uuid of the section
         uuid_ = request.args.get('section')
@@ -94,6 +97,32 @@ def show():
         # retrieve the sections to show in the navbar
         sections = section_repository.list()
 
+        # retrieve the live jammers on the jamulus snapsnare server.
+        # live jammers are available in the jammers repository
+
+        jammers = jammer_repository.find_by(order_by='id desc')
+        jammers['jammers'] = Markup(jammers.get('jammers'))
+        dt_created_at = datetime.strptime(jammers['created_at'], '%Y-%m-%d %H:%M:%S.%f')
+        jammers['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+
+        if not jammers['jammers']:
+            jammers['jammers'] = 'Geen actieve jammers'
+        # url = "http://192.168.2.123:5001/auth"
+        # identity = {
+        #     'username': 'admin@computersnaar.nl',
+        #     'password': 'TheRealIngestionFactory'
+        # }
+        # rest_request = RestRequest()
+        # response = rest_request.post(url, identity)
+        # content = response.json()
+        # access_token = content.get('access_token')
+        #
+        # url = "http://192.168.2.123:5001/jamulus/jammers"
+        # bearer_request = BearerRequest(access_token)
+        # response = bearer_request.get(url)
+        # content = response.json()
+        # jammers = Markup(content.get('jammers'))
+
         about = section_repository.find_by_name('Over ons')
         team = section_repository.find_by_name('Team')
 
@@ -105,4 +134,4 @@ def show():
         }
 
         connector.close()
-        return render_template('index/index.html', sections=sections, code=code, activities=activities, section=section)
+        return render_template('index/index.html', sections=sections, code=code, activities=activities, section=section, jammers=jammers)

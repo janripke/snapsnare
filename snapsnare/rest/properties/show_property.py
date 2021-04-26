@@ -8,7 +8,7 @@ from snapsnare.repositories.property.property_repository import PropertyReposito
 
 class ShowProperty(Resource):
 
-    @jwt_required
+    @jwt_required()
     def get(self):
         try:
             connector = current_app.connector

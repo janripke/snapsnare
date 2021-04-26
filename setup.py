@@ -53,7 +53,7 @@ setup(
 
         # Indicate who your project is intended for
         'Intended Audience :: Other Audience',
-        'Topic :: Other/Nonlisted Topic',
+        'Topic :: Multimedia :: Sound/Audio'
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'Topic :: Software Development :: Libraries :: Python Modules',
         
@@ -75,7 +75,7 @@ setup(
         'click',
         'psycopg2-binary',
         'requests',
-        'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.3',
+        'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.4',
         'pydub'
     ],
     package_data={

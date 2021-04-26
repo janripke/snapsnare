@@ -32,3 +32,11 @@ Execute the following command to install ddclient:
 ```shell
 $ dnf install ddclient
 ```
+
+## configure the firewall
+In order to get access to the snapsnare web server we have to open port 5000
+As root execute the following commands:
+```shell
+$ firewall-cmd --add-port=5000/tcp --permanent
+$ firewall-cmd --reload
+```
