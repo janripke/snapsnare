@@ -10,6 +10,10 @@
     </div>
     <div class="card-body">
       {{jammers.jammers}}
+      {% if icecast_status.source.stream_start %}
+      <hr>
+      <a href="{{icecast_status.source.server_url}}" target="_blank"><img class="png" height="90" src="static/live-stream.png"/></a>
+      {% endif %}
     </div>
   </div>
   <p></p>

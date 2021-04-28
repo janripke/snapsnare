@@ -4,12 +4,15 @@ from flask import request
 from flask import current_app
 import os.path
 import os
+import json
 import snapsnare
 from snapsnare.repositories.activity.activity_repository import ActivityRepository
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.repositories.jammer.jammer_repository import JammerRepository
+from snapsnare.repositories.icecast_status.icecast_status_repository import IcecastStatusRepository
+
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
 from snapsnare.system.requestors import RestRequest, BearerRequest
@@ -25,6 +28,7 @@ def show():
         role_repository = RoleRepository(connector)
         section_repository = SectionRepository(connector)
         jammer_repository = JammerRepository(connector)
+        icecast_status_repository = IcecastStatusRepository(connector)
 
         # retrieve the uuid of the section
         uuid_ = request.args.get('section')
@@ -107,6 +111,11 @@ def show():
 
         if not jammers['jammers']:
             jammers['jammers'] = 'Geen actieve jammers'
+
+        icecast_status = icecast_status_repository.find_by(order_by='id desc')
+        icecast_status['source'] = json.loads(icecast_status['source'])
+        print(icecast_status)
+
         # url = "http://192.168.2.123:5001/auth"
         # identity = {
         #     'username': 'admin@computersnaar.nl',
@@ -134,4 +143,4 @@ def show():
         }
 
         connector.close()
-        return render_template('index/index.html', sections=sections, code=code, activities=activities, section=section, jammers=jammers)
+        return render_template('index/index.html', sections=sections, code=code, activities=activities, section=section, jammers=jammers, icecast_status=icecast_status)
