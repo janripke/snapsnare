@@ -113,24 +113,8 @@ def show():
             jammers['jammers'] = 'Geen actieve jammers'
 
         icecast_status = icecast_status_repository.find_by(order_by='id desc')
-        icecast_status['source'] = json.loads(icecast_status['source'])
-        print(icecast_status)
-
-        # url = "http://192.168.2.123:5001/auth"
-        # identity = {
-        #     'username': 'admin@computersnaar.nl',
-        #     'password': 'TheRealIngestionFactory'
-        # }
-        # rest_request = RestRequest()
-        # response = rest_request.post(url, identity)
-        # content = response.json()
-        # access_token = content.get('access_token')
-        #
-        # url = "http://192.168.2.123:5001/jamulus/jammers"
-        # bearer_request = BearerRequest(access_token)
-        # response = bearer_request.get(url)
-        # content = response.json()
-        # jammers = Markup(content.get('jammers'))
+        if icecast_status:
+            icecast_status['source'] = json.loads(icecast_status['source'])
 
         about = section_repository.find_by_name('Over ons')
         team = section_repository.find_by_name('Team')
