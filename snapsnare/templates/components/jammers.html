@@ -1,4 +1,5 @@
- <div class="card">
+{% if "jammers" in section.components %}
+<div class="card">
         <div class="card-header" style="background-image:url('/static/jamulus.png'); background-repeat: no-repeat; background-position: right; background-size: 60px;">
         <div class="row">
             <div class="col text-start"><h6>Live op Snapsnare Jamulus </h6></div>
@@ -10,11 +11,12 @@
     </div>
     <div class="card-body">
       {{jammers.jammers}}
-      {% if (icecast_status and icecast_status.source.stream_start) %}
+      {% if (jammers.icecast_status and jammers.icecast_status.source.stream_start) %}
       <hr>
-      <a href="{{icecast_status.source.server_url}}" target="_blank"><img class="png" height="90" src="static/live-stream.png"/></a>
+      <a href="{{jammers.icecast_status.source.server_url}}" target="_blank"><img class="png" height="90" src="static/live-stream.png"/></a>
       {% endif %}
     </div>
   </div>
   <p></p>
+{% endif %}
 

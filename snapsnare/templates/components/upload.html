@@ -1,3 +1,4 @@
+{% if "upload" in section.components %}
 {% if (session.username and session.role==section.role) %}
   <div class="card">
     <div class="card-body">
@@ -5,4 +6,5 @@
     </div>
   </div>
   <p></p>
+{% endif %}
 {% endif %}

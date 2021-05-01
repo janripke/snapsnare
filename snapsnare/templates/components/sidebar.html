@@ -1,0 +1,14 @@
+
+<div class="card">
+    <div class="card-body">
+        <ul class="nav flex-column">
+            {% for section_ in sections %}
+            {% if (section.endpoint==section_.endpoint and section_.nav_ind==0) %}
+            <li class="nav-item">
+                <a class="nav-link snapsnare-link-green" href="{{section_.url}}?section={{section_.uuid}}">{{section_.name}}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

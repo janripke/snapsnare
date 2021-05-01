@@ -7,6 +7,7 @@ from flask import url_for
 from flask import current_app
 from flask_login import login_required
 from snapsnare.repositories.section.section_repository import SectionRepository
+from snapsnare.templates.components import code
 
 settings = Blueprint('settings', __name__, template_folder='templates')
 
@@ -23,4 +24,4 @@ def show():
         if role != 'admin':
             return redirect(url_for('login.show'))
 
-        return render_template('settings/settings.html', sections=sections)
+        return render_template('settings/settings.html', sections=sections, code=code.load())

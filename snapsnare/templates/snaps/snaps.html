@@ -2,11 +2,14 @@
 {% block body %}
 <div class="row">
     <div class="col-lg-3 align-text-top">
-        {% include "snaps/partials/sidebar.html" %}
+        {% include "components/sidebar.html" %}
     </div>
     <div class="col-lg-6">
-        {% include "snaps/partials/upload.html" %}
-        {% include "snaps/partials/samples.html" %}
+        {% include "components/posting.html" %}
+        {% include "components/upload.html" %}
+        {% include "components/jammers.html" %}
+        {% include "components/activities.html" %}
+        {% include "components/samples.html" %}
     </div>
     <div class="col-lg-3"></div>
 </div>

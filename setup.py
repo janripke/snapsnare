@@ -7,7 +7,6 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 META_PATH = os.path.join('snapsnare', '__init__.py')
 
 
-
 def read(*parts):
     """
     Build an absolute path from *parts* and and return the contents of the

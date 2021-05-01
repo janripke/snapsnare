@@ -120,10 +120,8 @@ def load_user(user_id):
 def logout():
     logout_user()
 
-    # remove the session variables for the user
-    session.pop('username')
-    session.pop('uuid')
-    session.pop('role')
+    # clear the session
+    session.clear()
     return redirect(url_for('index.show'))
 
 
