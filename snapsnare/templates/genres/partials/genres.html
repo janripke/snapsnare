@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Genres</h4>
+        <h6>Overzicht van de genres</h6>
+        <hr>
+
+        {% for genre in genres %}
+        <div class="card">
+            <div class="card-body">
+                <a class="snapsnare-link-gray" href="/genre?uuid={{genre.uuid}}">{{genre.genre}}</a>
+            </div>
+        </div>
+        <p></p>
+        {% endfor %}
+    </div>
+</div>

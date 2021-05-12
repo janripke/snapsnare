@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Genre</h4>
+        <h6>Wijzig genre details.</h6>
+        <hr>
+
+        <form action="{{ url_for('genre.show')}}?uuid={{genre.uuid}}" id="genre-form" class="form-signin ajax"
+              method="post">
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input id="genre" type="text" class="form-control" name="genre" required autofocus
+                       value="{{genre.genre}}">
+            </div>
+
+            <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{genre.uuid}}">
+            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+        </form>
+    </div>
+</div>

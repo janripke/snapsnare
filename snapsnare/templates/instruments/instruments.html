@@ -1,0 +1,11 @@
+{% extends "layout/public.html" %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-3">
+            {% include "settings/partials/sidebar.html" %}</div>
+        <div class="col-lg-6">
+            {% include "instruments/partials/posting.html" %}
+            {% include "instruments/partials/instruments.html" %}</div>
+        <div class="col-lg-3"></div>
+    </div>
+{% endblock %}

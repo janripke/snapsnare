@@ -1,0 +1,54 @@
+{% if "my_samples" in section.components %}
+{% for snap in my_snaps %}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col text-start">{{snap.first_name}} {{snap.last_name}}</div>
+
+            <div class="col text-end">
+                {% if (session.username and session.role==snap.role) %}
+                <div class="dropdown">
+                    <a class="btn bnt-small" href="#" role="button" id="dropdownPosting"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownPosting">
+                        <li><a class="dropdown-item" href="/upload?section={{snap.section}}&uuid={{snap.uuid}}"><i
+                                class="far fa-edit"></i> Sample bewerken</a></li>
+                        <li><a class="dropdown-item"
+                               href="/upload/delete?section={{snap.section}}&uuid={{snap.uuid}}"><i
+                                class="fas fa-times"></i> Sample verwijderen</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+        </div>
+        <div class="row">
+            <div class="col text-start"><b>{{snap.title}}</b></div>
+            <div class="w-100"></div>
+        </div>
+        <div class="row">
+            <div class="col text-start">delen: {{snap.access}} . instrument: {{snap.instrument}} . genre: {{snap.genre}} .
+                gewijzigd op {{snap.updated_at_formatted}}
+            </div>
+            <div class="w-100"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col text-start">
+                <audio id="music-{{snap.uuid}}" controls>
+                     <source src="{{snap.url}}" type="{{snap.type}}">
+                </audio>
+            </div>
+            <div class="w-100"></div>
+        </div>
+
+
+    </div>
+</div>
+<p></p>
+{% endfor %}
+{% endif %}

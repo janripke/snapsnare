@@ -1,1 +1,0 @@
-select * from snaps where uuid=:uuid and active=1

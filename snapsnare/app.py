@@ -38,6 +38,10 @@ from snapsnare.templates.posting.posting import posting
 from snapsnare.templates.posting.delete import posting_delete
 from snapsnare.templates.sections.sections import sections
 from snapsnare.templates.section.section import section
+from snapsnare.templates.genres.genres import genres
+from snapsnare.templates.genre.genre import genre
+from snapsnare.templates.instruments.instruments import instruments
+from snapsnare.templates.instrument.instrument import instrument
 from snapsnare.templates.upload.upload import upload
 from snapsnare.templates.upload.delete import upload_delete
 from snapsnare.templates.snaps.snaps import snaps
@@ -100,6 +104,10 @@ application.register_blueprint(posting)
 application.register_blueprint(posting_delete)
 application.register_blueprint(sections)
 application.register_blueprint(section)
+application.register_blueprint(genres)
+application.register_blueprint(genre)
+application.register_blueprint(instruments)
+application.register_blueprint(instrument)
 application.register_blueprint(snaps)
 application.register_blueprint(upload)
 application.register_blueprint(upload_delete)

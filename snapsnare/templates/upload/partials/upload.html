@@ -14,6 +14,52 @@
             </div>
 
             <div class="mb-3">
+                <label for="access" class="form-label">Delen</label>
+                <select id="access" class="form-select" name="access">
+                    {% for access in access_modifiers %}
+                    {% if upload.access==access.modifier %}
+                    <option selected value="{{access.modifier}}">{{access.modifier}}</option>
+                    {% endif %}
+                    {% if upload.access!=access.modifier %}
+                    <option value="{{access.modifier}}">{{access.modifier}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="instrument" class="form-label">Instrument</label>
+                <select id="instrument" class="form-select" name="instrument">
+                    {% for instrument in instruments %}
+                    {% if upload.instrument==instrument.name %}
+                    <option selected value="{{instrument.name}}">{{instrument.name}}</option>
+                    {% endif %}
+                    {% if upload.instrument!=instrument.name %}
+                    <option value="{{instrument.name}}">{{instrument.name}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <select id="genre" class="form-select" name="genre">
+                    {% for genre in genres %}
+                    {% if upload.genre==genre.genre %}
+                    <option selected value="{{genre.genre}}">{{genre.genre}}</option>
+                    {% endif %}
+                    {% if upload.genre!=genre.genre %}
+                    <option value="{{genre.genre}}">{{genre.genre}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+
+
+            <div class="mb-3">
                 <label for="chord_schema" class="form-label">Akkoorden schema</label>
                 <input id="chord_schema" type="text" class="form-control" name="chord_schema"
                        value="{{upload.chord_schema}}">
@@ -23,7 +69,6 @@
                 <label for="file-upload" class="form-label">Upload sample</label>
                  <input id="file-upload" type="file" name="file" accept="audio/*" />
             </div>
-
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{upload.uuid}}">
             <input id="user" type="hidden" name="user" class="form-control" value="{{upload.user}}">

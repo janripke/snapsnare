@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Instrumenten</h4>
+        <h6>Overzicht van de instrumenten</h6>
+        <hr>
+
+        {% for instrument in instruments %}
+        <div class="card">
+            <div class="card-body">
+                <a class="snapsnare-link-gray" href="/instrument?uuid={{instrument.uuid}}">{{instrument.name}}</a>
+            </div>
+        </div>
+        <p></p>
+        {% endfor %}
+    </div>
+</div>

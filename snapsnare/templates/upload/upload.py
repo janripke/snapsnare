@@ -15,6 +15,9 @@ from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.snap.snap_repository import SnapRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
+from snapsnare.repositories.instrument.instrument_repository import InstrumentRepository
+from snapsnare.repositories.access_modifier.access_modifier_repository import AccessModifierRepository
+from snapsnare.repositories.genre.genre_repository import GenreRepository
 from snapsnare.system import storage
 
 upload = Blueprint('upload', __name__, template_folder='templates')
@@ -27,13 +30,20 @@ def show():
     user_repository = UserRepository(connector)
     section_repository = SectionRepository(connector)
     role_repository = RoleRepository(connector)
-
+    instrument_repository = InstrumentRepository(connector)
+    access_modifier_repository = AccessModifierRepository(connector)
+    genre_repository = GenreRepository(connector)
     user = user_repository.find_by_uuid(session['uuid'])
 
     if request.method == 'GET':
         # retrieve the uuid.
         section_uuid = request.args.get('section')
         uuid_ = request.args.get('uuid')
+
+        # retrieve the instruments
+        instruments = instrument_repository.list_by(active=1, order_by='name')
+        access_modifiers = access_modifier_repository.list_by(active=1, order_by='modifier')
+        genres = genre_repository.list_by(active=1, order_by='genre')
 
         sections = section_repository.list()
 
@@ -50,10 +60,20 @@ def show():
                 'first_name': user['first_name'],
                 'last_name': user['last_name'],
                 'title': snap['title'],
+                'access': snap['access'],
+                'instrument': snap['instrument'],
+                'genre': snap['genre'],
                 'chord_schema': snap['chord_schema']
             }
+
             connector.close()
-            return render_template('upload/upload.html', sections=sections, upload=upload_)
+            return render_template(
+                'upload/upload.html',
+                sections=sections,
+                upload=upload_,
+                instruments=instruments,
+                access_modifiers=access_modifiers,
+                genres=genres)
 
         # contains the uuid of the section
         section_uuid = request.args.get('section')
@@ -74,13 +94,22 @@ def show():
         }
 
         connector.close()
-        return render_template('upload/upload.html', sections=sections, upload=upload_)
+        return render_template(
+            'upload/upload.html',
+            sections=sections,
+            upload=upload_,
+            instruments=instruments,
+            access_modifiers=access_modifiers,
+            genres=genres)
 
     if request.method == 'POST':
         uuid_ = request.form['uuid']
         user_uuid = request.form['user']
         section_uuid = request.form['section']
         title = request.form['title']
+        instrument = request.form['instrument']
+        access = request.form['access']
+        genre = request.form['genre']
         chord_schema = request.form['chord_schema']
 
         # image_as_background = request.form['image_as_background']
@@ -105,6 +134,9 @@ def show():
             snap_ = {
                 'uuid': uuid_,
                 'title': title,
+                'access': access,
+                'instrument': instrument,
+                'genre': genre,
                 'chord_schema': chord_schema
             }
 
@@ -137,6 +169,9 @@ def show():
             'uuid': uuid_,
             'usr_id': user['id'],
             'title': title,
+            'access': access,
+            'instrument': instrument,
+            'genre': genre,
             'chord_schema': chord_schema
         }
         snap_repository.insert(snap_)

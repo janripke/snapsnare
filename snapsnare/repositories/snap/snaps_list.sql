@@ -1,1 +1,0 @@
-select * from snaps where active=1 order by updated_at desc

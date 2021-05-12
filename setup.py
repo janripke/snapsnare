@@ -1,35 +1,31 @@
+from pathlib import Path
 from setuptools import setup, find_packages
-import codecs
-import os
 import re
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-META_PATH = os.path.join('snapsnare', '__init__.py')
+HERE = Path(__file__).parent
+META_PATH = Path().joinpath("snapsnare", "__init__.py")
 
 
-def read(*parts):
+def read(*parts) -> str:
     """
     Build an absolute path from *parts* and and return the contents of the
     resulting file.  Assume UTF-8 encoding.
     """
-    with codecs.open(os.path.join(HERE, *parts), 'rb', 'utf-8') as f:
+    with HERE.joinpath(*parts).open(mode='r', encoding='utf-8') as f:
         return f.read()
 
 
-META_FILE = read(META_PATH)
-
-
-def find_meta(meta):
+def find_meta(meta: str) -> str:
     """
-    Extract __*meta*__ from META_FILE.
+    Extract __*meta*__ from the project META_FILE.
     """
     meta_match = re.search(
-        r"^__{meta}__ = ['\"]([^'\"]*)['\"]".format(meta=meta),
-        META_FILE, re.M
+        f"^__{meta}__ = ['\"]([^'\"]*)['\"]",
+        read(META_PATH), re.M
     )
     if meta_match:
         return meta_match.group(1)
-    raise RuntimeError('Unable to find __{meta}__ string.'.format(meta=meta))
+    raise RuntimeError(f"Unable to find __{meta}__ string.")
 
 
 setup(
@@ -75,7 +71,8 @@ setup(
         'psycopg2-binary',
         'requests',
         'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.4',
-        'pydub'
+        'pydub',
+        'aubio'
     ],
     package_data={
         'snapsnare': [

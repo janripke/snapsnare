@@ -23,7 +23,7 @@ def load():
         # no uuid_ is given, so Home is assumed
         section = section_repository.find_by_name('Home')
 
-    snaps = snap_repository.list()
+    snaps = snap_repository.list_by(active=1, access='public', order_by='updated_at desc')
 
     properties = current_app.properties
 
@@ -39,6 +39,9 @@ def load():
 
         dt_created_at = datetime.strptime(snap['created_at'], '%Y-%m-%d %H:%M:%S.%f')
         snap['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+
+        dt_updated_at = datetime.strptime(snap['updated_at'], '%Y-%m-%d %H:%M:%S.%f')
+        snap['updated_at_formatted'] = dt_updated_at.strftime('%d %B om %H:%M')
 
         clips_folder = os.path.join(properties['current.dir'], 'assets', snap['uuid'])
         if os.path.isdir(clips_folder):

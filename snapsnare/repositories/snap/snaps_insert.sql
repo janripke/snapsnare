@@ -1,1 +1,0 @@
-insert into snaps (uuid, ist_id, usr_id, title, chord_schema) values (:uuid, :ist_id, :usr_id, :title, :chord_schema) returning id

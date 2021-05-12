@@ -1,57 +1,52 @@
-* generate a uuid
+### known bugs
+when using the following url, after login Team is show, which is not correct
+http://0.0.0.0:5000/snaps?section=9407509c-a91f-4b06-89d5-4bff2fb0d06d
 
-postgres# create extension "uuid-ossp"
 
-after installing the function uuid_generate_v4() is available for the super-user
-postgres, but not for the user snapsnare_owner.
 
-reference:
-https://stackoverflow.com/questions/43685799/postgres-uuid-type-error
-
-* add the field chord_progression/chord_schema (akkoorden schema) to the upload, not required.
-* add replies to activities  
-* convert audio to musical notes
-* converted audio (to wav) does not play in firefox (linux) 
-
-* activities
-  * format the active timestamp to 12 December om 12:12
-
-* browser language
-  * retrieve the browser language
-  * build language logic 
-
-* language support
-  * build in language support
+### soundbank
+* when uploading a sample register the following information
+  
+  - the bpm 
+  - the instrument used.
+  - the time signature (maatsoort 2/4, 3/4, 6/8)
+  - the scale (toonladder C major scale is C–D–E–F–G–A–B–[C])  
+  - the genre (jazz, rock, lofi)
   
 * resolve beats per minute in audio files.
-* remove uuid (postgresql) from insert scripts, should be protected, so we can commit to git
-* remove the passwords from the test.
-* remove the postgresql credentials from the db configuration, should be in .noora
-* create smtp support
-  https://www.digitalocean.com/community/tutorials/how-to-use-google-s-smtp-server
-* create more log entries
-* create activity entries from a user perspective. 
-* create password_forgotten
-* posting support multiple images
-* posting check for uuid manipulation
-* sections, make them dynamic, reflecting the highest level
-* build-in, calendar functionality
-  https://www.creative-tim.com/product/full-calendar
-* synchronize postings with facebook using the facebook graph api.
-* section, in_navbar (0/1), shows the section in the navbar.
-* posting add suppress header option. Make it configurable as part of the section, that you can
-  in the posting this option then becomes available.
-* jamulus setup a headless server
-  can be realised through a container too.
-  https://jamulus.io/wiki/Choosing-a-Server-Type
-  https://jamulus.io/wiki/Running-a-Private-Server
-  https://jamulus.io/wiki/Server-Linux#running-a-headless-server   
-* allow iframes for youtube
+https://aubio.readthedocs.io/en/latest/
+https://aubio.org/manual/latest/python.html
+https://aubio.org/manual/latest/py_examples.html
+https://github.com/aubio/aubio/blob/master/python/demos/demo_wav2midi.py
+https://github.com/aubio/aubio/tree/master/python/demos
+https://hackernoon.com/audio-handling-basics-how-to-process-audio-files-using-python-cli-jo283u3y
   
-  the expected flow is : create a reset request, send an email containing an url and an activation key.
-  when the key is valid the user allowed to change the password.
+
+https://librosa.org/doc/latest/generated/librosa.load.html
 
 
-finished
-* add the field chord_progression/chord_schema (akkoorden schema) to the upload, not required.
-* footer aligned in the middle, use 3 sections as in the body.
+### postings
+* add replies to postings  
+* format the timestamp 01 May om 12:12 to 1 Mei om 12:12
+* posting check for uuid manipulation
+* synchronize postings with facebook using the facebook graph api.
+* add sticky posting functionality (always on top)
+
+### general
+* build in browser detected language support
+* implement a database log handler
+
+  
+### register
+* create smtp support
+  send an email to the user has registered and is waiting for approval.
+  send an email to the user when a registered user is accepted.
+  send an email to the user when a registered user is rejected.
+  reference:
+  https://www.digitalocean.com/community/tutorials/how-to-use-google-s-smtp-server
+  
+### password forgotten
+* create a webpage where a user can reset his password.
+  an email is send containing a link, for one-time use where the user can reset his password.
+  the link will expire after 24 hours and after use.
+  
