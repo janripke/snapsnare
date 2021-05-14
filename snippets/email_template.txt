@@ -1,0 +1,8 @@
+Beste ((registration.first_name)),
+
+Je registratie is ontvangen.
+We zullen je zo snel als mogelijk laten weten of je registratie is goedgekeurd.
+
+Met vriendelijke groet,
+
+Stichting Computersnaar

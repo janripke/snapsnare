@@ -20,6 +20,11 @@ register = Blueprint('register', __name__, template_folder='templates')
 def show():
     connector = current_app.connector
     if request.method == 'GET':
+
+        properties = current_app.properties
+
+
+
         section_repository = SectionRepository(connector)
         sections = section_repository.list()
         return render_template('register/register.html', sections=sections)
