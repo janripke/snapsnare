@@ -6,6 +6,7 @@ under construction
 - Added chord_schema to my_samples and snaps, it was there, but now it is shown (again)
 - Upload, set sharing default to public
 - Sidebars, in settings and sections, added paragraph break.
+- Added bookmark support to activities, snaps, my_snaps, settings.sections, settings.instruments and settings.genres
 
 # Version 0.0.8
 released 2021-05-12

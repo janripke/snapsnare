@@ -5,7 +5,7 @@
         <hr>
 
         {% for genre in genres %}
-        <div class="card">
+        <div class="card" id="{{genre.uuid}}">
             <div class="card-body">
                 <a class="snapsnare-link-gray" href="/genre?uuid={{genre.uuid}}">{{genre.genre}}</a>
             </div>

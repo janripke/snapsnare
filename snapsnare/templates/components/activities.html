@@ -1,6 +1,6 @@
 {% if "activities" in section.components %}
 {% for activity in activities %}
-<div class="card">
+<div class="card" id="{{activity.uuid}}">
     <div class="card-header">
         <div class="row">
             <div class="col text-start"><h6>{{activity.first_name}} {{activity.last_name}}</h6></div>
