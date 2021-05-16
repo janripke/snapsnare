@@ -26,15 +26,21 @@
             <div class="w-100"></div>
         </div>
         <div class="row">
-            <div class="col text-start"><b>{{snap.title}}</b></div>
+            <div class="col text-start"><b>{{snap.title}}</b>
+            {% if snap.access=="public" %}
+                <i class="fas fa-share-alt"></i>
+            {% endif %}
+            </div>
             <div class="w-100"></div>
         </div>
+        {% if snap.chord_schema %}
         <div class="row">
-            <div class="col text-start"><i>{{snap.chord_schema}}</i> <i class="fas fa-music"></i></div>
+            <div class="col text-start"><i class="fas fa-music"></i><i> {{snap.chord_schema}}</i></div>
             <div class="w-100"></div>
         </div>
+        {% endif %}
         <div class="row">
-            <div class="col text-start"><i class="fas fa-share-alt"></i> {{snap.access}} . instrument: {{snap.instrument}} . genre: {{snap.genre}} .
+            <div class="col text-start">instrument: {{snap.instrument}} . genre: {{snap.genre}} .
                 gewijzigd op {{snap.updated_at_formatted}}
             </div>
             <div class="w-100"></div>
