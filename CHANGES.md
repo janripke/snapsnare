@@ -1,5 +1,11 @@
 # Version 0.0.9
 under construction
+- Sections, To speed-up rendering the data is only loaded when component to retrieve the data for contains the
+  specified section_component.
+- Added sharing icon to my_samples and snaps
+- Added chord_schema to my_samples and snaps, it was there, but now it is shown (again)
+- Upload, set sharing default to public
+- Sidebars, in settings and sections, added paragraph break.
 
 # Version 0.0.8
 released 2021-05-12

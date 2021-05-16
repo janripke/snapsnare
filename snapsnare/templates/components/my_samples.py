@@ -1,38 +1,23 @@
 import os
 from datetime import datetime
-from flask import current_app, request, session
+from flask import current_app, session
 from snapsnare.repositories.snap.snap_repository import SnapRepository
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
-from snapsnare.repositories.section.section_repository import SectionRepository
-from snapsnare.repositories.section_component.section_component_repository import SectionComponentRepository
 from snapsnare.system import utils
 from snapsnare.system.folderlib import Folder
-
+from snapsnare.system import component
+from snapsnare.system.component import SectionComponent
 
 def load():
     connector = current_app.connector
 
-    section_repository = SectionRepository(connector)
-    section_component_repository = SectionComponentRepository(connector)
     snap_repository = SnapRepository(connector)
     user_repository = UserRepository(connector)
     role_repository = RoleRepository(connector)
 
-    # retrieve the uuid of the section
-    uuid_ = request.args.get('section')
-    section = section_repository.find_by_uuid(uuid_)
-    if not section:
-        # no uuid_ is given, so Home is assumed
-        section = section_repository.find_by_name('Home')
-
-    # check if this component is configured for this section
-    section_components = section_component_repository.list_by(stn_id=section['id'])
-    components = []
-    for section_component in section_components:
-        components.append(section_component['component'])
-
-    if "my_samples" not in components:
+    section = component.section()
+    if not component.has_section_component(section, SectionComponent.MY_SAMPLES):
         return []
 
     user = user_repository.find_by_uuid(session['uuid'])

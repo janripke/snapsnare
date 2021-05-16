@@ -1,19 +1,13 @@
-import json
-from flask import request, current_app
-from snapsnare.repositories.section.section_repository import SectionRepository
+from flask import current_app
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.repositories.section_component.section_component_repository import SectionComponentRepository
+from snapsnare.system import component
 
 
 def load():
-    # retrieve the uuid of the section
-    uuid_ = request.args.get('section')
     connector = current_app.connector
-    section_repository = SectionRepository(connector)
-    section = section_repository.find_by_uuid(uuid_)
-    if not section:
-        # no uuid_ is given, so Home is assumed
-        section = section_repository.find_by_name('Home')
+
+    section = component.section()
 
     # retrieve the expected role for this section
     role_repository = RoleRepository(connector)

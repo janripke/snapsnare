@@ -25,5 +25,5 @@ def show():
             my_snaps=my_samples.load(),
             section=section.load(),
             jammers=jammers.load(),
-            activities=activities.load()
+            activities=activities.load(),
         )

@@ -6,8 +6,8 @@ import os
 from snapsnare.repositories.activity.activity_repository import ActivityRepository
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
-from snapsnare.repositories.section.section_repository import SectionRepository
-
+from snapsnare.system import component
+from snapsnare.system.component import SectionComponent
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
 
@@ -17,14 +17,10 @@ def load():
     activity_repository = ActivityRepository(connector)
     user_repository = UserRepository(connector)
     role_repository = RoleRepository(connector)
-    section_repository = SectionRepository(connector)
 
-    # retrieve the uuid of the section
-    uuid_ = request.args.get('section')
-    section = section_repository.find_by_uuid(uuid_)
-    if not section:
-        # no uuid_ is given, so Home is assumed
-        section = section_repository.find_by_name('Home')
+    section = component.section()
+    if not component.has_section_component(section, SectionComponent.ACTIVITIES):
+        return []
 
     activities = activity_repository.list_by_stn_id(section.get('id', -1))
 

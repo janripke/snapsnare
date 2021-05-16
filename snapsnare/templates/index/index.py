@@ -20,5 +20,5 @@ def show():
             code=code.load(),
             activities=activities.load(),
             section=section.load(),
-            jammers=jammers.load()
+            jammers=jammers.load(),
         )

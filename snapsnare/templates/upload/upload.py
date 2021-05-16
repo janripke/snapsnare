@@ -90,7 +90,8 @@ def show():
             'section': section_uuid,
             'user': user['uuid'],
             'first_name': user['first_name'],
-            'last_name': user['last_name']
+            'last_name': user['last_name'],
+            'access': "public"
         }
 
         connector.close()

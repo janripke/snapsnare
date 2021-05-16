@@ -3,6 +3,7 @@ import snapsnare
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.repositories.property.property_repository import PropertyRepository
 
+
 def load():
     connector = current_app.connector
     section_repository = SectionRepository(connector)
@@ -26,6 +27,4 @@ def load():
     }
 
     code['backend'] = backend
-
-
     return code
