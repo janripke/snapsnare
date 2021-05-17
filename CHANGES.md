@@ -7,6 +7,7 @@ under construction
 - Upload, set sharing default to public
 - Sidebars, in settings and sections, added paragraph break.
 - Added bookmark support to activities, snaps, my_snaps, settings.sections, settings.instruments and settings.genres
+- Added file repository.
 
 # Version 0.0.8
 released 2021-05-12
