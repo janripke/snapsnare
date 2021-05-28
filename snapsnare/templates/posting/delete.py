@@ -8,8 +8,8 @@ from flask import flash
 from flask_login import login_required
 
 from snapsnare.repositories.activity.activity_repository import ActivityRepository
+from snapsnare.repositories.file.file_repository import FileRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
-from snapsnare.repositories.user.user_repository import UserRepository
 
 posting_delete = Blueprint('posting_delete', __name__, template_folder='templates')
 
@@ -28,6 +28,7 @@ def show():
 
         connector = current_app.connector
         activity_repository = ActivityRepository(connector)
+        file_repository = FileRepository(connector)
         section_repository = SectionRepository(connector)
         section = section_repository.find_by_uuid(section_uuid_)
 
@@ -36,6 +37,11 @@ def show():
             'active': 0
         }
         activity_repository.update(activity)
+
+        file = {
+            'active': 0,
+        }
+        file_repository.update(file, where={'asset': uuid_})
 
         connector.commit()
         connector.close()

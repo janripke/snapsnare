@@ -70,7 +70,7 @@ setup(
         'click',
         'psycopg2-binary',
         'requests',
-        'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.4',
+        'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.5',
         'pydub',
         'aubio'
     ],

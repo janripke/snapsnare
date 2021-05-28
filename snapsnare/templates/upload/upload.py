@@ -127,10 +127,7 @@ def show():
         if uuid_:
 
             # persist the uploaded files if any.
-            storage.persist_files(properties, uuid_, files)
-
-            # check if m4a files were uploaded and convert them to wav if not present
-            storage.convert_m4a_files(properties, uuid_)
+            storage.persist_files(properties, uuid_, files, storage.AssetType.SINGLE)
 
             snap_ = {
                 'uuid': uuid_,
@@ -161,10 +158,7 @@ def show():
         uuid_ = str(uuid4())
 
         # persist the uploaded files if any.
-        storage.persist_files(properties, uuid_, files)
-
-        # check if m4a files were uploaded and convert them to wav
-        storage.convert_m4a_files(properties, uuid_)
+        storage.persist_files(properties, uuid_, files, storage.AssetType.SINGLE)
 
         snap_ = {
             'uuid': uuid_,

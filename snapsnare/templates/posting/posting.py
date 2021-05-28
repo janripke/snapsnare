@@ -11,7 +11,6 @@ from flask import redirect
 from flask import url_for
 from flask_login import login_required
 
-from snapsnare.system import dictionaries
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.activity.activity_repository import ActivityRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
@@ -83,31 +82,17 @@ def show():
     content = request.form['content']
     rendering = request.form.get('rendering')
 
-    # image_as_background = request.form['image_as_background']
-    # print('image_as_background', image_as_background)
-
     # store the uploaded files if given.
     files = request.files
 
     properties = current_app.properties
-
-    # # create the upload folder for this posting, if not present
-    # upload_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], uuid_)
-    # if not os.path.isdir(upload_folder):
-    #     os.mkdir(upload_folder)
-    #
-    # for file in files.getlist('file'):
-    #     # implicit way to determine if there were files requested for upload
-    #     if file.filename:
-    #         filename, extension = os.path.splitext(file.filename)
-    #         file.save(os.path.join(upload_folder, "{}{}".format(str(uuid4()), extension)))
 
     activity_repository = ActivityRepository(connector)
     section = section_repository.find_by_uuid(section_uuid)
 
     if uuid_:
         # persist the uploaded files if any.
-        storage.persist_files(properties, uuid_, files)
+        storage.persist_files(properties, uuid_, files, storage.AssetType.MULTIPLE)
 
         activity = {
             'uuid': uuid_,
@@ -118,9 +103,6 @@ def show():
         activity_repository.update(activity)
         connector.commit()
         connector.close()
-
-        # file = request.files['file']
-        # print(file)
 
         flash('Je bericht is bijgewerkt', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
@@ -138,7 +120,7 @@ def show():
     uuid_ = str(uuid4())
 
     # persist the uploaded files if any.
-    storage.persist_files(properties, uuid_, files)
+    storage.persist_files(properties, uuid_, files, storage.AssetType.MULTIPLE)
 
     activity = {
         'uuid': uuid_,
