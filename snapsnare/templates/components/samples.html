@@ -8,7 +8,7 @@
             <div class="col text-end">
                 {% if (session.username and session.role==snap.role) %}
                 <div class="dropdown">
-                    <a class="btn bnt-small" href="#" role="button" id="dropdownPosting"
+                    <a class="btn btn-snapsnare" href="#" role="button" id="dropdownPosting"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-h"></i>
                     </a>
@@ -40,15 +40,16 @@
         </div>
         {% endif %}
         <div class="row">
-            <div class="col text-start">instrument: {{snap.instrument}} . genre: {{snap.genre}} .
-                gewijzigd op {{snap.updated_at_formatted}}
+            <div class="col text-start">
+                <span class="badge btn-snapsnare">{{snap.instrument}}</span>
+                <span class="badge bg-secondary">{{snap.genre}}</span>
             </div>
             <div class="w-100"></div>
         </div>
 
         <div class="row">
             <div class="col text-start">
-                <audio id="music-{{snap.uuid}}" controls>
+                <audio id="music-{{snap.uuid}}" controls loop>
                      <source src="{{snap.url}}" type="{{snap.type}}">
                 </audio>
             </div>

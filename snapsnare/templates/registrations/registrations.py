@@ -25,14 +25,14 @@ def show():
 
         connector = current_app.connector
         registration_repository = RegistrationRepository(connector)
-        registrations_ = registration_repository.list()
+        registrations_ = registration_repository.list_by(active=1, order_by='id')
 
         section_repository = SectionRepository(connector)
         sections = section_repository.list()
         role_repository = RoleRepository(connector)
 
         for registration in registrations_:
-            role = role_repository.find_by_id(registration['rle_id'])
+            role = role_repository.find_by(id=registration['rle_id'])
 
             dt_created_at = datetime.strptime(registration['created_at'], '%Y-%m-%d %H:%M:%S.%f')
             registration['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')

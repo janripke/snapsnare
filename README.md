@@ -1,14 +1,14 @@
 snapsnare
 =
 
-snapsnare, this project, the platform where musicians meet, share and create their compositions.
+snapsnare, this project, the platform where musicians meet, share and create compositions.
 
 Table of contents:
 
 * Remarks
 * Getting started
-  * general installation
-  * development installation
+  * General installation (non-production)
+  * Development installation
 
 # Remarks
 snapsnare currently supports Python 3.5 and higher.
@@ -39,7 +39,7 @@ create the snapsnare-ds.json in ~/.snapsnare folder: paste the following into th
 
 ### install dependencies
 For converting m4a to wav, snapsnare uses pydub. This package dependend on the ffmpeg library.
-Install ffmpeg through execution, as root, the following command:
+Install ffmpeg through executing, as root, the following command:
 ```shell
 sudo dnf install ffmpeg 
 ```

@@ -8,8 +8,8 @@ def load():
     connector = current_app.connector
     section_repository = SectionRepository(connector)
     property_repository = PropertyRepository(connector)
-    about = section_repository.find_by_name('Over ons')
-    team = section_repository.find_by_name('Team')
+    about = section_repository.find_by(name='Over ons', active=1)
+    team = section_repository.find_by(name='Team', active=1)
 
     code = {
         'name': snapsnare.__name__,
@@ -18,10 +18,10 @@ def load():
         'team': team['uuid']
     }
 
-    environment = property_repository.find_by_name('application.environment')
+    environment = property_repository.find_by(name='application.environment')
     code['environment'] = environment.get('value')
 
-    backend_version = property_repository.find_by_name('application.version')
+    backend_version = property_repository.find_by(name='application.version')
     backend = {
         'version': backend_version.get('value')
     }

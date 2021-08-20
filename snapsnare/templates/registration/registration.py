@@ -34,10 +34,10 @@ def show():
         registration_ = registration_repository.find_by_uuid(uuid_)
         registration_ = dictionaries.strip_none(registration_)
 
-        role = role_repository.find_by_id(registration_['rle_id'])
+        role = role_repository.find_by(id=registration_['rle_id'], active=1)
         registration_['role'] = role['role']
 
-        roles = role_repository.list()
+        roles = role_repository.list_by(active=1)
 
         section_repository = SectionRepository(connector)
         sections = section_repository.list()
@@ -53,7 +53,7 @@ def show():
     phone_number = request.form['phone_number']
     role = request.form['role']
 
-    role = role_repository.find_by_role(role)
+    role = role_repository.find_by(role=role, active=1)
 
     registration_ = {
         'uuid': uuid_,

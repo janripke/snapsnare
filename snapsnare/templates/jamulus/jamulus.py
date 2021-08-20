@@ -34,10 +34,10 @@ def show():
         section = section_repository.find_by_uuid(uuid_)
         if not section:
             # no uuid_ is given, so Home is assumed
-            section = section_repository.find_by_name('Home')
+            section = section_repository.find_by(name='Home', active=1)
 
         # retrieve the expected role for this section
-        role = role_repository.find_by_id(section['rle_id'])
+        role = role_repository.find_by(id=section['rle_id'], active=1)
         section['role'] = role['role']
 
         # retrieve the sections to show in the navbar
@@ -45,8 +45,8 @@ def show():
 
         status = jamulus.status()
 
-        about = section_repository.find_by_name('Over ons')
-        team = section_repository.find_by_name('Team')
+        about = section_repository.find_by(name='Over ons', active=1)
+        team = section_repository.find_by(name='Team', active=1)
 
         code = {
             'name': snapsnare.__name__,

@@ -26,8 +26,8 @@ def load():
     properties = current_app.properties
 
     for snap in snaps:
-        user = user_repository.find_by_id(snap['usr_id'])
-        role = role_repository.find_by_id(user['rle_id'])
+        user = user_repository.find_by(id=snap['usr_id'], active=1)
+        role = role_repository.find_by(id=user['rle_id'], active=1)
 
         snap['username'] = user.get('username')
         snap['first_name'] = user.get('first_name')

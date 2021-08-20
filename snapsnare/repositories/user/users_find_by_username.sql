@@ -1,1 +1,0 @@
-select * from users where username=:username and active=1

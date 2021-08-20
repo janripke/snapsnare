@@ -1,1 +1,0 @@
-select * from activities where active=1 and stn_id=:stn_id order by updated_at desc

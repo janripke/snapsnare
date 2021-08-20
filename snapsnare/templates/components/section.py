@@ -11,7 +11,7 @@ def load():
 
     # retrieve the expected role for this section
     role_repository = RoleRepository(connector)
-    role = role_repository.find_by_id(section['rle_id'])
+    role = role_repository.find_by(id=section['rle_id'], active=1)
     section['role'] = role['role']
 
     section_component_repository = SectionComponentRepository(connector)

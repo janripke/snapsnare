@@ -39,7 +39,7 @@ def show():
         return redirect(url_for('login.show'))
 
     registration_repository = RegistrationRepository(connector)
-    registration = registration_repository.find_by_id(user['rgn_id'])
+    registration = registration_repository.find_by(id=user['rgn_id'], active=1)
     if registration['state'] == 'blocked':
         flash('Deze gebruiker is geblokkeerd', 'danger')
         return redirect(url_for('login.show'))
@@ -51,7 +51,7 @@ def show():
         return redirect(url_for('login.show'))
 
     role_repository = RoleRepository(connector)
-    role = role_repository.find_by_id(user['rle_id'])
+    role = role_repository.find_by(id=user['rle_id'], active=1)
     connector.close()
 
     login_user(registered_user)

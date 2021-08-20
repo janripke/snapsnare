@@ -8,7 +8,7 @@
             <div class="col text-end">
                 {% if (session.username and session.role==snap.role) %}
                 <div class="dropdown">
-                    <a class="btn bnt-small" href="#" role="button" id="dropdownPosting"
+                    <a class="btn btn-snapsnare" href="#" role="button" id="dropdownPosting"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-h"></i>
                     </a>
@@ -35,13 +35,15 @@
         </div>
         {% if snap.chord_schema %}
         <div class="row">
-            <div class="col text-start"><i class="fas fa-music"></i><i> {{snap.chord_schema}}</i></div>
+            <div class="col text-start"><i class="fas fa-music "></i><i> {{snap.chord_schema}}</i></div>
             <div class="w-100"></div>
         </div>
         {% endif %}
         <div class="row">
-            <div class="col text-start">instrument: {{snap.instrument}} . genre: {{snap.genre}} .
-                gewijzigd op {{snap.updated_at_formatted}}
+            <div class="col text-start">
+
+                <span class="badge btn-snapsnare">{{snap.instrument}}</span>
+                <span class="badge bg-secondary">{{snap.genre}}</span>
             </div>
             <div class="w-100"></div>
         </div>
@@ -49,9 +51,19 @@
 
         <div class="row">
             <div class="col text-start">
-                <audio id="music-{{snap.uuid}}" controls>
+                <audio onplaying="audio.playing()" id="music-{{snap.uuid}}" loop>
                      <source src="{{snap.url}}" type="{{snap.type}}">
                 </audio>
+            </div>
+            <div class="w-100"></div>
+        </div>
+        <div class="row">
+            <div class="col text-start">
+                <hr>
+                <button onclick="audio.play('music-{{snap.uuid}}')" class="btn"><i class="fas fa-play"></i></button>
+                <button onclick="audio.pause('music-{{snap.uuid}}')" class="btn"><i class="fas fa-pause"></i></button>
+                <button onclick="audio.stop('music-{{snap.uuid}}')" class="btn"><i class="fas fa-stop"></i></button>
+                <a href="{{snap.url}}" class="btn" download=""><i class="fas fa-arrow-down"></i></a>
             </div>
             <div class="w-100"></div>
         </div>

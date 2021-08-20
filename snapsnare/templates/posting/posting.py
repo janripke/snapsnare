@@ -41,7 +41,7 @@ def show():
             # contains the uuid of the section
 
             activity_repository = ActivityRepository(connector)
-            activity = activity_repository.find_by_uuid(uuid_)
+            activity = activity_repository.find_by(uuid=uuid_)
 
             posting_ = {
                 'section': section_uuid,
@@ -60,7 +60,7 @@ def show():
 
         user = user_repository.find_by_uuid(session['uuid'])
         section = section_repository.find_by_uuid(section_uuid)
-        role = role_repository.find_by_id(section['rle_id'])
+        role = role_repository.find_by(id=section['rle_id'], active=1)
 
         # check messing with the posting in relation to the section
         if session['role'] != role['role']:
@@ -110,8 +110,7 @@ def show():
     user = user_repository.find_by_uuid(user_uuid)
 
     # check messing with the posting in relation to the section
-
-    role = role_repository.find_by_id(section['rle_id'])
+    role = role_repository.find_by(id=section['rle_id'], active=1)
 
     if session['role'] != role['role']:
         return redirect(url_for('login.show'))

@@ -57,3 +57,7 @@ https://librosa.org/doc/latest/generated/librosa.load.html
   an email is send containing a link, for one-time use where the user can reset his password.
   the link will expire after 24 hours and after use.
   
+### jamulus
+* running jamulus in a container
+* create an rest api to spinup a jamulus server in a container.
+* create an web ui to spinup a jamulus server in a container.

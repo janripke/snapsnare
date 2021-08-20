@@ -29,7 +29,7 @@ def show():
         role_repository = RoleRepository(connector)
 
         for section in sections_:
-            role = role_repository.find_by_id(section['rle_id'])
+            role = role_repository.find_by(id=section['rle_id'], active=1)
 
             dt_created_at = datetime.strptime(section['created_at'], '%Y-%m-%d %H:%M:%S.%f')
             section['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')

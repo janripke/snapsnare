@@ -1,1 +1,0 @@
-select * from registrations where active=1 order by id desc

@@ -1,1 +1,0 @@
-select * from activities where uuid=:uuid and active=1

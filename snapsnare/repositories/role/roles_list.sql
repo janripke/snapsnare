@@ -1,1 +1,0 @@
-select * from roles where active=1 order by role

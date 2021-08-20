@@ -50,7 +50,7 @@ class TestRepository(unittest.TestCase):
         id_ = user_repository.insert(user)
         self.assertIsNotNone(id_, 'no id')
 
-        user = user_repository.find_by_id(id_)
+        user = user_repository.find_by(id=id_)
         connector.rollback()
         connector.close()
 

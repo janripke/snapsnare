@@ -1,6 +1,7 @@
-postgresql database installation
+snapsnare postgresql database
 =
 
+# database installation
 This document describes the creation of the snapsnare database in the postgresql server.
 It is assumed that the postgresql server is installed and running.
 See https://fedoraproject.org/wiki/PostgreSQL for installing postgresql on Fedora. 
@@ -83,4 +84,27 @@ postgres=# select * from pg_extension;
 * show users      : \du
 * exit            : \q
   
+# backup the database
+
+1. login as root:
+
+```shell script
+# login as root
+$ sudo -i
+```
+
+2. when root login as the postgres user:
+
+```shell script
+$ su - postgres
+```
+
+3. make a backup of the database
+
+The name of your database is snapsnare and the created backup file is called snapsnare_1.0.5.sql
+More information can be found through: https://www.postgresql.org/docs/9.1/backup-dump.html
+
+```shell script
+$ pg_dump snapsnare > snapsnare_1.0.5.sql
+```
 

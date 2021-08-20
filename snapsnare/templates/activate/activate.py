@@ -29,7 +29,7 @@ def show():
         role_repository = RoleRepository(connector)
 
         registration = registration_repository.find_by_uuid(uuid_)
-        role = role_repository.find_by_id(registration['rle_id'])
+        role = role_repository.find_by(id=registration['rle_id'], active=1)
         user = {
             'username': registration['username'],
             'password': registration['password'],

@@ -6,10 +6,6 @@
             <div class="col text-start"><h6>{{activity.first_name}} {{activity.last_name}}</h6></div>
             <div class="col text-end">
                 {% if (session.username and session.role==activity.role) %}
-<!--                <button type="button" class="btn btn-default"-->
-<!--                        onclick="window.location.href='/posting?section={{activity.section}}&uuid={{activity.uuid}}';">-->
-<!--                    <i class="fas fa-ellipsis-h"></i>-->
-<!--                </button>-->
                 <div class="dropdown">
                     <a class="btn btn-secondary" href="#" role="button" id="dropdownPosting"
                        data-bs-toggle="dropdown" aria-expanded="false">

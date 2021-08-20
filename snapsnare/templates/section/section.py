@@ -33,13 +33,12 @@ def show():
     if request.method == 'GET':
         uuid_ = request.args.get('uuid')
 
-        roles = role_repository.list()
-
+        roles = role_repository.list_by(active=1)
         if uuid_:
             section_ = section_repository.find_by_uuid(uuid_)
             section_ = dictionaries.strip_none(section_)
 
-            role = role_repository.find_by_id(section_['rle_id'])
+            role = role_repository.find_by(id=section_['rle_id'], active=1)
             section_['role'] = role['role']
 
             connector.close()
@@ -57,7 +56,7 @@ def show():
         url = request.form['url']
         role = request.form['role']
         nav_ind = request.form.get('nav_ind', 0)
-        role = role_repository.find_by_role(role)
+        role = role_repository.find_by(role=role, active=1)
 
         if uuid_:
             section_ = {

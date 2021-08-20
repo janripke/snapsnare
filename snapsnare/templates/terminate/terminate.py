@@ -33,7 +33,7 @@ def show():
             return redirect(url_for('registrations.show'))
 
         user_repository = UserRepository(connector)
-        user = user_repository.find_by_id(registration['id'])
+        user = user_repository.find_by(id=registration['id'])
         user = {
             'uuid': user['uuid'],
             'active': 0

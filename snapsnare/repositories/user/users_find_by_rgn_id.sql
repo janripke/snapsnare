@@ -1,1 +1,0 @@
-select * from users where rgn_id=:rgn_id and active=1

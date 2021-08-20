@@ -1,1 +1,0 @@
-insert into users (uuid, username, password, first_name, last_name, nickname, phone_number, rle_id, rgn_id) values (:uuid, :username, :password, :first_name, :last_name, :nickname, :phone_number, :rle_id, :rgn_id) returning id

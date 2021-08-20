@@ -35,7 +35,7 @@ def show():
         user = dictionaries.strip_none(user)
 
         role_repository = RoleRepository(connector)
-        role = role_repository.find_by_id(user['rle_id'])
+        role = role_repository.find_by(id=user['rle_id'], active=1)
         user['role'] = role['role']
 
         connector.close()

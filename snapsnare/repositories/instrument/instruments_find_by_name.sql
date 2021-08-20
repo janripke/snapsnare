@@ -1,1 +1,0 @@
-select * from instruments where name=:name and active=1

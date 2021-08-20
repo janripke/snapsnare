@@ -13,9 +13,11 @@ snapsnare_ds = {
 connector = ConnectorFactory.create_connector(snapsnare_ds)
 
 activity_repository = ActivityRepository(connector)
-activity = activity_repository.find_by_uuid('4a643c89-095c-4935-bc67-67458584316e')
-content = activity.get('content')
-content = content.replace(chr(13), '\r')
-print(content)
+# activity = activity_repository.find_by_uuid('4a643c89-095c-4935-bc67-67458584316e')
+activity = activity_repository.find_by(uuid='4a643c89-095c-4935-bc67-67458584316e')
+if activity:
+  content = activity.get('content')
+  content = content.replace(chr(13), '\r')
+  print(content)
 connector.connect()
 connector.close()

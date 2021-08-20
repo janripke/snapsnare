@@ -47,7 +47,7 @@ def show():
             flash('Deze gebruiker heeft zich al geregistreerd', 'danger')
             return redirect(url_for('register.show'))
 
-        role = role_repository.find_by_role('user')
+        role = role_repository.find_by(role='user', active=1)
 
         registration = {
             'username': username,

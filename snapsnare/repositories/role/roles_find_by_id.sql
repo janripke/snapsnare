@@ -1,1 +1,0 @@
-select * from roles where id=:id and active=1

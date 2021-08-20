@@ -19,7 +19,7 @@ class ShowProperty(Resource):
                 return responsify(message='property name is required'), 400
 
             property_repository = PropertyRepository(connector)
-            property_ = property_repository.find_by_name(name)
+            property_ = property_repository.find_by(name=name)
 
             if not property_:
                 return responsify(message='property not found'), 404

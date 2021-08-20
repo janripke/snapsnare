@@ -1,1 +1,0 @@
-select * from users where uuid=:uuid and active=1

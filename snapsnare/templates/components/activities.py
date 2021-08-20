@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from flask import request
 from flask import current_app
@@ -22,13 +23,13 @@ def load():
     if not component.has_section_component(section, SectionComponent.ACTIVITIES):
         return []
 
-    activities = activity_repository.list_by_stn_id(section.get('id', -1))
+    activities = activity_repository.list_by(stn_id=section.get('id', -1), active=1, order_by='updated_at desc')
 
     properties = current_app.properties
 
     for activity in activities:
-        user = user_repository.find_by_id(activity['usr_id'])
-        role = role_repository.find_by_id(user['rle_id'])
+        user = user_repository.find_by(id=activity['usr_id'], active=1)
+        role = role_repository.find_by(id=user['rle_id'], active=1)
 
         content = activity['content']
         if content:
@@ -47,6 +48,7 @@ def load():
 
         # for now we only use .png, .jpg and .gif images
         # slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])
+        logging.debug(f"{activity=}")
         slides_folder = os.path.join(properties['current.dir'], 'assets', activity['uuid'])
         slides = []
         if os.path.isdir(slides_folder):

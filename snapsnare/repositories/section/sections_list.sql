@@ -1,1 +1,0 @@
-select * from sections where active=1 order by id

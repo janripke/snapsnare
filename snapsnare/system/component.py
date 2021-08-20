@@ -23,7 +23,7 @@ def section():
 
     if not section_:
         # no uuid_ is given, so Home is assumed
-        section_ = section_repository.find_by_name('Home')
+        section_ = section_repository.find_by(name='Home', active=1)
 
     return section_
 

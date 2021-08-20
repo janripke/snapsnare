@@ -1,1 +1,0 @@
-select value from application_properties where name=:name

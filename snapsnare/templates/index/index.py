@@ -1,3 +1,4 @@
+import logging
 from flask import Blueprint, render_template
 from flask import request
 from snapsnare.templates.components import jammers
@@ -13,7 +14,7 @@ index = Blueprint('index', __name__, template_folder='templates')
 @index.route('/')
 def show():
     if request.method == 'GET':
-
+        logging.debug(f"{request.accept_languages=}")
         return render_template(
             'index/index.html',
             sections=sections.load(),

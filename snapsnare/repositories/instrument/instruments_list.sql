@@ -1,1 +1,0 @@
-select * from instruments where active=1 order by name
