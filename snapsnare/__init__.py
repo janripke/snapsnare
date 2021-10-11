@@ -9,4 +9,4 @@ __author__ = 'Jan Ripke;Paulo Marta'
 __email__ = 'janripke@gmail.com;pcmarta1975@gmail.com'
 
 __license__ = 'GNU General Public License v3 or later (GPLv3+)'
-__copyright__ = 'Copyleft (l) 2016-2020 snapsnare'
+__copyright__ = 'Copyleft (l) 2020-2021 snapsnare'

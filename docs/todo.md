@@ -49,8 +49,19 @@ https://librosa.org/doc/latest/generated/librosa.load.html
   send an email to the user has registered and is waiting for approval.
   send an email to the user when a registered user is accepted.
   send an email to the user when a registered user is rejected.
+  
   reference:
-  https://www.digitalocean.com/community/tutorials/how-to-use-google-s-smtp-server
+  
+  - https://www.digitalocean.com/community/tutorials/how-to-use-google-s-smtp-server  
+
+  using google cloud
+  - https://developers.google.com/gmail/api/quickstart/python
+  - https://mailtrap.io/blog/send-emails-with-gmail-api/  
+  - https://developers.google.com/gmail/api/reference/rest?apix=true
+  
+  
+  
+  
   
 ### password forgotten
 * create a webpage where a user can reset his password.

@@ -72,7 +72,9 @@ setup(
         'requests',
         'paprika-connector @ git+https://github.com/janripke/paprika-connector.git@0.0.5',
         'pydub',
-        'aubio'
+        'aubio',
+        'google-api-python-client',
+        'oauth2client'
     ],
     package_data={
         'snapsnare': [
