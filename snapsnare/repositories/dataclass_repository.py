@@ -45,7 +45,12 @@ class DataclassRepository(Repository):
             kwargs.pop('order_by')
             order_by = f"order by {order_by}"
 
-        statement = f'select * from {table_name} {where_formatter(kwargs)} {order_by}'
+        limit = kwargs.get('limit', '')
+        if limit:
+            kwargs.pop('limit')
+            limit = f"limit {limit}"
+
+        statement = f'select * from {table_name} {where_formatter(kwargs)} {order_by} {limit}'
         return self._find(statement, kwargs)
 
     def list(self):
@@ -63,7 +68,12 @@ class DataclassRepository(Repository):
             kwargs.pop('order_by')
             order_by = f"order by {order_by}"
 
-        statement = f'select * from {table_name} {where_formatter(kwargs)} {order_by}'
+        limit = kwargs.get('limit', '')
+        if limit:
+            kwargs.pop('limit')
+            limit = f"limit {limit}"
+
+        statement = f'select * from {table_name} {where_formatter(kwargs)} {order_by} {limit}'
         return self._list(statement, kwargs)
 
     def insert(self, data_object):

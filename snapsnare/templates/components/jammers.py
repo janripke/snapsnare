@@ -17,7 +17,7 @@ def load():
     if not component.has_section_component(section, SectionComponent.JAMMERS):
         return None
 
-    jammers = jammer_repository.find_by(order_by='id desc') or {}
+    jammers = jammer_repository.find_by(order_by='id desc', limit=1) or {}
 
     if jammers:
         jammers['jammers'] = Markup(jammers.get('jammers'))
@@ -29,7 +29,7 @@ def load():
             'jammers': 'Geen actieve jammers'
         }
 
-    icecast_status = icecast_status_repository.find_by(order_by='id desc')
+    icecast_status = icecast_status_repository.find_by(order_by='id desc', limit=1)
     if icecast_status:
         icecast_status['source'] = json.loads(icecast_status['source'])
 
