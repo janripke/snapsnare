@@ -46,7 +46,7 @@ sudo dnf install ffmpeg
 
 ### install snapsnare
 ```shell
-pip3 install git+https://github.com/janripke/snapsnare.git@0.0.10#egg=snapsnare
+pip3 install git+https://github.com/janripke/snapsnare.git@0.0.11#egg=snapsnare
 ```
 
 ### run snapsnare
@@ -66,7 +66,9 @@ snapsnare depends on the snapsnare database.
 Before you start the installation of snapsnare it is recommended you execute these [installation instructions](https://github.com/janripke/snapsnare-db/blob/main/README.md) first.
 
 ### configure snapsnare
-For safety reasons the snapsnare database credentials are stored on your local machine. 
+
+#### snapsnare-ds.json
+The snapsnare database credentials are stored on your local machine. 
 To be more exact under ~/.snapsnare/snapsnare-ds.json
 
 create the snapsnare-ds.json in ~/.snapsnare folder: paste the following into this file:
@@ -79,6 +81,25 @@ create the snapsnare-ds.json in ~/.snapsnare folder: paste the following into th
   "password": "snapsnare_owner"
 }
 ```
+
+#### snapsnare.json
+For sending an activation e-mail, gmail is used. 
+These settings are stored on your local machine under ~/.snapsnare/snapsnare.json
+```python
+{
+  "gmail": {
+    "account": "<your.account@gmail.com>",
+    "password": "<password>",
+    "host": "smtp.gmail.com",
+    "port": 465
+  },
+  "snapsnare": {
+    "host": "0.0.0.0:5000"
+  }
+}
+```
+
+
 
 ### clone snapsnare
 ```

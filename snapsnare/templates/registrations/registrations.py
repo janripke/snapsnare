@@ -28,7 +28,7 @@ def show():
         registrations_ = registration_repository.list_by(active=1, order_by='id')
 
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
         role_repository = RoleRepository(connector)
 
         for registration in registrations_:

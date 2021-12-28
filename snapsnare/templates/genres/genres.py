@@ -26,7 +26,7 @@ def show():
         genre_repository = GenreRepository(connector)
         section_repository = SectionRepository(connector)
         genres_ = genre_repository.list_by(active=1, order_by='genre')
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
         connector.close()
 
         return render_template('genres/genres.html', genres=genres_, sections=sections)

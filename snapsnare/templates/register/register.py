@@ -12,6 +12,9 @@ from flask import current_app
 from snapsnare.repositories.registration.registration_repository import RegistrationRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
+from snapsnare.repositories.template.template_repository import TemplateRepository
+from snapsnare.system import hasher, utils, gmail
+
 
 register = Blueprint('register', __name__, template_folder='templates')
 
@@ -23,16 +26,15 @@ def show():
 
         properties = current_app.properties
 
-
-
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
         return render_template('register/register.html', sections=sections)
 
     if request.method == 'POST':
 
         register_repository = RegistrationRepository(connector)
         role_repository = RoleRepository(connector)
+        template_repository = TemplateRepository(connector)
 
         username = request.form['username']
         password = request.form['password']
@@ -51,7 +53,7 @@ def show():
 
         registration = {
             'username': username,
-            'password': password,
+            'password': hasher.sha256(password),
             'uuid': str(uuid4()),
             'first_name': first_name,
             'last_name': last_name,
@@ -62,8 +64,22 @@ def show():
 
         id_ = register_repository.insert(registration)
         print("registration created with id ", id_)
+
+        properties = current_app.properties
+        settings = utils.load_json(properties, 'snapsnare.json')
+        credentials = settings['gmail']
+        snapsnare = settings['snapsnare']
+        host = snapsnare['host']
+
+        template = template_repository.find_by(template='activate')
+        content = template['content']
+        content = content.replace("{host}", host)
+        content = content.replace("{uuid}", registration['uuid'])
+
         connector.commit()
         connector.close()
 
-        flash('De registratie is geslaagd, er wordt een activerings e-mail gestuurd wanneer je account is goedgekeurd.', 'success')
+        gmail.send_email(credentials, registration['username'], "activeer je account bij snapsnare.org", content)
+
+        flash('De registratie is geslaagd, er wordt een activerings e-mail gestuurd.', 'success')
         return redirect(url_for('register.show'))

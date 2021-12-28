@@ -41,7 +41,7 @@ def show():
         section['role'] = role['role']
 
         # retrieve the sections to show in the navbar
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
 
         status = jamulus.status()
 

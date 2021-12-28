@@ -1,6 +1,9 @@
 from paprika_connector.connectors.connector_factory import ConnectorFactory
 from snapsnare.repositories.activity.activity_repository import ActivityRepository
 
+
+
+
 snapsnare_ds = {
   'type': 'postgresql',
   'host': 'localhost',

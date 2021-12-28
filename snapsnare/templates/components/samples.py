@@ -6,7 +6,8 @@ from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.system import utils, component
 from snapsnare.system.folderlib import Folder
-from snapsnare.system.component import SectionComponent
+from snapsnare.system.component import ComponentEnum
+
 
 def load():
     connector = current_app.connector
@@ -15,7 +16,7 @@ def load():
     role_repository = RoleRepository(connector)
 
     section = component.section()
-    if not component.has_section_component(section, SectionComponent.SAMPLES):
+    if not component.has_fragment(section, ComponentEnum.SAMPLES):
         return []
 
     snaps = snap_repository.list_by(active=1, access='public', order_by='updated_at desc')

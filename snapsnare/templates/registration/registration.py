@@ -40,7 +40,7 @@ def show():
         roles = role_repository.list_by(active=1)
 
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
 
         connector.close()
         return render_template('registration/registration.html', sections=sections, registration=registration_, roles=roles)

@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime
-from flask import request
 from flask import current_app
 import os.path
 import os
@@ -8,7 +7,7 @@ from snapsnare.repositories.activity.activity_repository import ActivityReposito
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
 from snapsnare.system import component
-from snapsnare.system.component import SectionComponent
+from snapsnare.system.component import ComponentEnum
 from snapsnare.system.folderlib import Folder
 from markupsafe import Markup
 
@@ -20,7 +19,7 @@ def load():
     role_repository = RoleRepository(connector)
 
     section = component.section()
-    if not component.has_section_component(section, SectionComponent.ACTIVITIES):
+    if not component.has_fragment(section, ComponentEnum.ACTIVITIES):
         return []
 
     activities = activity_repository.list_by(stn_id=section.get('id', -1), active=1, order_by='updated_at desc')

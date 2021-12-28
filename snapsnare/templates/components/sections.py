@@ -6,4 +6,4 @@ def load():
     # retrieve the sections to show in the navbar
     connector = current_app.connector
     section_repository = SectionRepository(connector)
-    return section_repository.list()
+    return section_repository.list_by(active=1, order_by='id')

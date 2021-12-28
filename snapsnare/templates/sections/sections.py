@@ -24,7 +24,7 @@ def show():
 
         connector = current_app.connector
         section_repository = SectionRepository(connector)
-        sections_ = section_repository.list()
+        sections_ = section_repository.list_by(active=1, order_by='id')
 
         role_repository = RoleRepository(connector)
 

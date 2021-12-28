@@ -32,7 +32,7 @@ def show():
         user = dictionaries.strip_none(user)
 
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
 
         connector.close()
         return render_template('password/password.html', sections=sections, user=user)

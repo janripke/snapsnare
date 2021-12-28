@@ -4,7 +4,7 @@ from flask import current_app
 from snapsnare.repositories.jammer.jammer_repository import JammerRepository
 from snapsnare.repositories.icecast_status.icecast_status_repository import IcecastStatusRepository
 from snapsnare.system import component
-from snapsnare.system.component import SectionComponent
+from snapsnare.system.component import ComponentEnum
 from markupsafe import Markup
 
 
@@ -14,8 +14,8 @@ def load():
     icecast_status_repository = IcecastStatusRepository(connector)
 
     section = component.section()
-    if not component.has_section_component(section, SectionComponent.JAMMERS):
-        return None
+    if not component.has_fragment(section, ComponentEnum.JAMMERS):
+        return []
 
     jammers = jammer_repository.find_by(order_by='id desc', limit=1) or {}
 

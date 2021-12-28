@@ -1,5 +1,5 @@
 from snapsnare.system import hasher
 
-print(hasher.sha256('welkom123'))
+print(hasher.sha256('#Sharethemusic1#'))
 '2a5c5f2623024ce3de6fe7dc8f5e13ca55b7aadc13174254b40af574e37018c1'
 '2a5c5f2623024ce3de6fe7dc8f5e13ca55b7aadc13174254b40af574e37018c1'

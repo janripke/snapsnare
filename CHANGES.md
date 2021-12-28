@@ -1,5 +1,14 @@
+# Version 0.0.11
+- replaced section_components with fragments
+- send an activation e-mail for new users.
+- users can activate their new account.
+- added section allowed_roles for adding new content.  
+- bug: new users can not login
+
+# Version 0.0.10
+- set limit to 1, when showing the current online jamulus jammers.
+
 # Version 0.0.9
-under construction
 - Sections, To speed-up rendering the data is only loaded when component to retrieve the data for contains the
   specified section_component.
 - Added sharing icon to my_samples and snaps

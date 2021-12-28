@@ -1,10 +1,12 @@
 {% if "posting" in section.components %}
-{% if (session.username and session.role==section.role) %}
+{% if session.role in section.allowed_roles %}
+{% if (session.username) %}
   <div class="card">
     <div class="card-body">
       <a href="/posting?section={{section.uuid}}"><input id="role" type="text" class="form-control" name="role" readonly="readonly" value="Schrijf iets..."></a>
     </div>
   </div>
   <p></p>
+{% endif %}
 {% endif %}
 {% endif %}

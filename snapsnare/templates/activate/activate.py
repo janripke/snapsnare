@@ -1,34 +1,34 @@
 from flask import Blueprint
 from flask import request
-from flask import session
-from flask import redirect
-from flask import url_for
+from flask import flash
+from flask import render_template
 from flask import current_app
-from flask_login import login_required
 
 from snapsnare.repositories.registration.registration_repository import RegistrationRepository
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.role.role_repository import RoleRepository
+from snapsnare.templates.components import code
+
 activate = Blueprint('activate', __name__, template_folder='templates')
 
 
 @activate.route('/activate', methods=['GET'])
-@login_required
 def show():
     if request.method == 'GET':
-
-        role = session.get('role', 'user')
-        if role != 'admin':
-            return redirect(url_for('login.show'))
-
         uuid_ = request.args.get('uuid')
 
         connector = current_app.connector
+
         registration_repository = RegistrationRepository(connector)
         user_repository = UserRepository(connector)
         role_repository = RoleRepository(connector)
 
-        registration = registration_repository.find_by_uuid(uuid_)
+        registration = registration_repository.find_by(uuid=uuid_, active=1, state='new')
+        if not registration:
+            connector.close()
+            flash('Deze gebruiker is al geactiveerd', 'danger')
+            return render_template('activate/activate.html', code=code.load())
+
         role = role_repository.find_by(id=registration['rle_id'], active=1)
         user = {
             'username': registration['username'],
@@ -49,5 +49,5 @@ def show():
         registration_repository.update(registration)
         connector.commit()
         connector.close()
-
-        return redirect(url_for('registrations.show'))
+        flash('Gebruiker geactiveerd', 'success')
+        return render_template('activate/activate.html', code=code.load())

@@ -24,7 +24,7 @@ def show():
 
     if request.method == 'GET':
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
         connector.close()
         return render_template('login/login.html', sections=sections)
 

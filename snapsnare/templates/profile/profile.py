@@ -22,7 +22,7 @@ def show():
     user_repository = UserRepository(connector)
     section_repository = SectionRepository(connector)
 
-    sections = section_repository.list()
+    sections = section_repository.list_by(active=1, order_by='id')
 
     if request.method == 'GET':
         uuid_ = request.args.get('uuid')

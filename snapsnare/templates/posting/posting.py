@@ -29,19 +29,27 @@ def show():
     role_repository = RoleRepository(connector)
 
     user = user_repository.find_by_uuid(session['uuid'])
+    sections = section_repository.list_by(active=1, order_by='id')
 
     if request.method == 'GET':
         # retrieve the uuid.
         section_uuid = request.args.get('section')
         uuid_ = request.args.get('uuid')
 
-        sections = section_repository.list()
-
         if uuid_:
             # contains the uuid of the section
 
             activity_repository = ActivityRepository(connector)
             activity = activity_repository.find_by(uuid=uuid_)
+
+            if user['id'] != activity['usr_id']:
+                flash('Je mag dit bericht niet bijwerken', 'danger')
+                posting_ = {
+                    'section': section_uuid,
+                    'uuid': uuid_,
+                }
+                connector.close()
+                return render_template('posting/posting.html', sections=sections, posting=posting_)
 
             posting_ = {
                 'section': section_uuid,
@@ -59,12 +67,12 @@ def show():
         section_uuid = request.args.get('section')
 
         user = user_repository.find_by_uuid(session['uuid'])
-        section = section_repository.find_by_uuid(section_uuid)
-        role = role_repository.find_by(id=section['rle_id'], active=1)
-
-        # check messing with the posting in relation to the section
-        if session['role'] != role['role']:
-            return redirect(url_for('login.show'))
+        # section = section_repository.find_by_uuid(section_uuid)
+        # role = role_repository.find_by(id=section['rle_id'], active=1)
+        #
+        # # check messing with the posting in relation to the section
+        # if session['role'] != role['role']:
+        #     return redirect(url_for('login.show'))
 
         posting_ = {
             'section': section_uuid,
@@ -91,6 +99,16 @@ def show():
     section = section_repository.find_by_uuid(section_uuid)
 
     if uuid_:
+        activity = activity_repository.find_by(uuid=uuid_)
+        if user['id'] != activity['usr_id']:
+            flash('Je mag dit bericht niet bijwerken', 'danger')
+            posting_ = {
+                'section': section_uuid,
+                'uuid': uuid_,
+            }
+            connector.close()
+            return render_template('posting/posting.html', sections=sections, posting=posting_)
+
         # persist the uploaded files if any.
         storage.persist_files(properties, uuid_, files, storage.AssetType.MULTIPLE)
 
@@ -109,11 +127,11 @@ def show():
 
     user = user_repository.find_by_uuid(user_uuid)
 
-    # check messing with the posting in relation to the section
-    role = role_repository.find_by(id=section['rle_id'], active=1)
-
-    if session['role'] != role['role']:
-        return redirect(url_for('login.show'))
+    # # check messing with the posting in relation to the section
+    # role = role_repository.find_by(id=section['rle_id'], active=1)
+    #
+    # if session['role'] != role['role']:
+    #     return redirect(url_for('login.show'))
 
     # generate a uuid, reflecting functional key of the activity
     uuid_ = str(uuid4())

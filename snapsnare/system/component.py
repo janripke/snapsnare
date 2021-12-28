@@ -1,10 +1,11 @@
 from enum import Enum
 from flask import request, current_app
 from snapsnare.repositories.section.section_repository import SectionRepository
-from snapsnare.repositories.section_component.section_component_repository import SectionComponentRepository
+from snapsnare.repositories.component.component_repository import ComponentRepository
+from snapsnare.repositories.fragment.fragment_repository import FragmentRepository
 
 
-class SectionComponent(Enum):
+class ComponentEnum(Enum):
     ACTIVITIES = "activities"
     JAMMERS = "jammers"
     MY_SAMPLES = "my_samples"
@@ -28,14 +29,17 @@ def section():
     return section_
 
 
-def has_section_component(section: dict, component: SectionComponent):
+def has_fragment(section: dict, component: ComponentEnum):
     connector = current_app.connector
-    section_component_repository = SectionComponentRepository(connector)
+    fragment_repository = FragmentRepository(connector)
+    component_repository = ComponentRepository(connector)
 
-    if section:
-        # check if this component is configured for this section
-        section_components = section_component_repository.list_by(stn_id=section['id'])
-        for section_component in section_components:
-            if section_component['component'] == component.value:
-                return True
+    component_ = component_repository.find_by(component=component.value)
+    if component_:
+        if section:
+            # check if this component is configured for this section
+            fragments = fragment_repository.list_by(stn_id=section['id'])
+            for fragment in fragments:
+                if fragment['cpt_id'] == component_['id']:
+                    return True
     return False

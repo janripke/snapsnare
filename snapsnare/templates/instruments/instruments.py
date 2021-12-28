@@ -25,7 +25,7 @@ def show():
         instrument_repository = InstrumentRepository(connector)
         section_repository = SectionRepository(connector)
         instruments_ = instrument_repository.list_by(active=1, order_by='name')
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
         connector.close()
 
         return render_template('instruments/instruments.html', sections=sections, instruments=instruments_)

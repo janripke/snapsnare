@@ -45,7 +45,7 @@ def show():
         access_modifiers = access_modifier_repository.list_by(active=1, order_by='modifier')
         genres = genre_repository.list_by(active=1, order_by='genre')
 
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
 
         if uuid_:
             # contains the uuid of the section

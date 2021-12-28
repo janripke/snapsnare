@@ -18,7 +18,7 @@ def show():
     if request.method == 'GET':
         connector = current_app.connector
         section_repository = SectionRepository(connector)
-        sections = section_repository.list()
+        sections = section_repository.list_by(active=1, order_by='id')
 
         role = session.get('role', 'user')
         if role != 'admin':
