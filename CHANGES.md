@@ -1,3 +1,7 @@
+# Version 0.0.12
+- footer, link to snapsnare group on facebook
+- typo: Registeren should be Registreren (in Dutch)
+
 # Version 0.0.11
 - replaced section_components with fragments
 - send an activation e-mail for new users.
