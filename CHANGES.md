@@ -1,3 +1,10 @@
+# Version 0.0.13
+- removed dependencies to 'aubio', 'google-api-python-client', 'oauth2client'
+- added section Development and the role developer
+- changed snapsnare logo, added ALPHA to it.
+- added reply repository, and corresponding replies table.
+- uses snapsnare-db version 1.0.9
+
 # Version 0.0.12
 - footer, link to snapsnare group on facebook
 - typo: Registeren should be Registreren (in Dutch)

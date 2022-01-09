@@ -27,7 +27,9 @@ def load():
 
     allowed_roles = []
     if section['role'] == 'user':
-        allowed_roles = ['user', 'moderator', 'admin']
+        allowed_roles = ['user', 'developer', 'moderator', 'admin']
+    if section['role'] == 'developer':
+        allowed_roles = ['developer', 'admin']
     elif section['role'] == 'moderator':
         allowed_roles = ['moderator', 'admin']
     elif section['role'] == 'admin':

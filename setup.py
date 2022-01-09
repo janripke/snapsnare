@@ -71,10 +71,7 @@ setup(
         'psycopg2-binary',
         'requests',
         'paprika-connector==0.0.6',
-        'pydub',
-        'aubio',
-        'google-api-python-client',
-        'oauth2client'
+        'pydub'
     ],
     package_data={
         'snapsnare': [
