@@ -22,21 +22,21 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Registreren</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 {% if not session.username %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Inloggen</a>
+                        <a class="nav-link" href="/login">Log in</a>
                     </li>
                 {% endif %}
                 {% if session.username %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Uitloggen</a>
+                        <a class="nav-link" href="/logout">Log out</a>
                     </li>
                 {% endif %}
                 {% if (session.username and session.role=='admin') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/settings">Instellingen</a>
+                        <a class="nav-link" href="/settings">Settings</a>
                     </li>
                 {% endif %}
             </ul>
@@ -44,4 +44,3 @@
     </div>
 </nav>
 <p></p>
-

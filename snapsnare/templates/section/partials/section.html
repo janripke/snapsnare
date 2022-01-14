@@ -1,18 +1,18 @@
 <div class="card">
     <div class="card-body">
         <h4>Section</h4>
-        <h6>Wijzig sectie details.</h6>
+        <h6>Change section details.</h6>
         <hr>
 
         <form action="{{ url_for('section.show')}}?uuid={{section.uuid}}" id="profile-form" class="form-signin ajax"
               method="post">
             <div class="mb-3">
-                <label for="name" class="form-label">Naam</label>
+                <label for="name" class="form-label">Section name</label>
                 <input id="name" type="text" class="form-control" name="name" required autofocus
                        value="{{section.name}}">
             </div>
             <div class="mb-3">
-                <label for="endpoint" class="form-label">Logische naam</label>
+                <label for="endpoint" class="form-label">Logical name</label>
                 <input id="endpoint" type="text" class="form-control" name="endpoint" required
                        value="{{section.endpoint}}">
             </div>
@@ -21,7 +21,7 @@
                 <input id="url" type="text" class="form-control" name="url" required value="{{section.url}}">
             </div>
             <div class="mb-3">
-                <label for="role" class="form-label">Rol</label>
+                <label for="role" class="form-label">Role</label>
                 <select id="role" class="form-select" name="role">
                     {% for role in roles %}
                     {% if section.role==role.role %}
@@ -37,21 +37,21 @@
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="nav_ind_unchecked" name="nav_ind"
                        value="1">
-                <label class="form-check-label" for="nav_ind_unchecked">Zichtbaar in menu</label>
+                <label class="form-check-label" for="nav_ind_unchecked">Visible in menu</label>
             </div>
             {% endif %}
             {% if section.nav_ind == 1 %}
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="nav_ind_checked" name="nav_ind" checked
                        value="1">
-                <label class="form-check-label" for="nav_ind_checked">Zichtbaar in menu</label>
+                <label class="form-check-label" for="nav_ind_checked">Visible in menu</label>
             </div>
             {% endif %}
 
 
 <!--            <input id="role" type="hidden" name="role" class="form-control" value="{{section.role}}">-->
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{section.uuid}}">
-            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+            <button type="submit" class="btn btn-snapsnare">Save</button>
         </form>
     </div>
 </div>

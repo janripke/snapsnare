@@ -1,7 +1,8 @@
 <div class="card">
     <div class="card-body">
-        <h4>Registratie</h4>
-        <h6>Wijzig gebruiker registratiegegevens.</h6>
+        <!-- <h4>Registratie</h4>
+        <h6>Wijzig gebruiker registratiegegevens.</h6> -->
+        <h4>Change the user's account details.</h4>
         <hr>
 
         <form action="{{ url_for('registration.show')}}?uuid={{registration.uuid}}" id="profile-form"
@@ -10,25 +11,25 @@
                 <label for="email" class="form-label">Email</label>
                 <input id="email" type="email" class="form-control" name="username" aria-describedby="emailHelp"
                        required readonly="readonly" value="{{ registration.username }}">
-                <div id="emailHelp" class="form-text">We delen je email adres nooit met anderen.</div>
+                <!-- Is hier niet nodig. Is niet openbaar. <div id="emailHelp" class="form-text">We delen je email adres nooit met anderen.</div> -->
             </div>
             <div class="mb-3">
-                <label for="firstName" class="form-label">Voornaam</label>
+                <label for="firstName" class="form-label">First name</label>
                 <input id="firstName" type="text" class="form-control" name="first_name" required autofocus
                        value="{{registration.first_name}}">
             </div>
             <div class="mb-3">
-                <label for="lastName" class="form-label">Achternaam</label>
+                <label for="lastName" class="form-label">Last name</label>
                 <input id="lastName" type="text" class="form-control" name="last_name" required
                        value="{{registration.last_name}}">
             </div>
             <div class="mb-3">
-                <label for="nickName" class="form-label">Bijnaam</label>
+                <label for="nickName" class="form-label">Nickname</label>
                 <input id="nickName" type="text" class="form-control" name="nickname"
                        value="{{registration.nickname}}">
             </div>
             <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Telefoonnummer</label>
+                <label for="phoneNumber" class="form-label">Phone number</label>
                 <input id="phoneNumber" type="text" class="form-control" name="phone_number"
                        value="{{registration.phone_number}}">
             </div>
@@ -47,7 +48,7 @@
             </div>
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{registration.uuid}}">
-            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+            <button type="submit" class="btn btn-snapsnare">Save</button>
         </form>
     </div>
 </div>

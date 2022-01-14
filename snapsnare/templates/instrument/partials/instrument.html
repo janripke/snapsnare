@@ -1,19 +1,20 @@
 <div class="card">
     <div class="card-body">
-        <h4>Instrument</h4>
-        <h6>Wijzig instrument details.</h6>
+        <!-- <h4>Instrument</h4>
+        <h6>Change instrument type.</h6> -->
+        <h4>Edit kind of instrument</h4>
         <hr>
 
         <form action="{{ url_for('instrument.show')}}?uuid={{instrument.uuid}}" id="instrument-form" class="form-signin ajax"
               method="post">
             <div class="mb-3">
-                <label for="name" class="form-label">Naam</label>
+                <label for="name" class="form-label">Kind of instrument</label>
                 <input id="name" type="text" class="form-control" name="name" required autofocus
                        value="{{instrument.name}}">
             </div>
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{instrument.uuid}}">
-            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+            <button type="submit" class="btn btn-snapsnare">Save</button>
         </form>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h4>Genre</h4>
-        <h6>Wijzig genre details.</h6>
+        <h6>Change genre details.</h6>
         <hr>
 
         <form action="{{ url_for('genre.show')}}?uuid={{genre.uuid}}" id="genre-form" class="form-signin ajax"
@@ -13,7 +13,7 @@
             </div>
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{genre.uuid}}">
-            <button type="submit" class="btn btn-snapsnare">Opslaan</button>
+            <button type="submit" class="btn btn-snapsnare">Save</button>
         </form>
     </div>
 </div>
