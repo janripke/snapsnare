@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <h4>Bericht maken</h4>
+        <h4>Create post</h4>
         <h5 class="card-title">{{posting.first_name}} {{posting.last_name}}</h5>
         <hr>
 
@@ -13,14 +13,14 @@
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="rendering_default" name="rendering"
                        value="background">
-                <label class="form-check-label" for="rendering_default">Afbeelding als achtergrond</label>
+                <label class="form-check-label" for="rendering_default">Image as background</label>
             </div>
             {% endif %}
             {% if posting.rendering=="background" %}
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="rendering_background" name="rendering" checked
                        value="background">
-                <label class="form-check-label" for="rendering_background">Afbeelding als achtergrond</label>
+                <label class="form-check-label" for="rendering_background">Image as background</label>
             </div>
             {% endif %}
             <!--    <div class="mb-3 form-check">-->
@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col text-start"><b>Toevoegen aan je bericht</b></div>
+                        <div class="col text-start"><b>Add to your post</b></div>
                         <div class="col text-start">
                             <label for="file-input">
                                 <i class="far fa-image fa-2x "></i>
@@ -45,7 +45,7 @@
             <input id="user" type="hidden" name="user" class="form-control" value="{{posting.user}}">
             <input id="section" type="hidden" name="section" class="form-control" value="{{posting.section}}">
             <p></p>
-            <button type="submit" class="btn btn-snapsnare w-100">Plaatsen</button>
+            <button type="submit" class="btn btn-snapsnare w-100">Post</button>
         </form>
     </div>
 </div>

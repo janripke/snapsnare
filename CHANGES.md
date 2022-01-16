@@ -1,3 +1,7 @@
+# Version 0.0.14
+- translated navigation for Dutch to English, English is now the default language.
+- uses snapsnare-db 1.0.10
+
 # Version 0.0.13
 - removed dependencies to 'aubio', 'google-api-python-client', 'oauth2client'
 - added section Development and the role developer

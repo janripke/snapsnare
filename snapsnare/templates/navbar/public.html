@@ -22,16 +22,16 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/register">Sign up</a>
                 </li>
                 {% if not session.username %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Log in</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                 {% endif %}
                 {% if session.username %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Log out</a>
+                        <a class="nav-link" href="/logout">Logout</a>
                     </li>
                 {% endif %}
                 {% if (session.username and session.role=='admin') %}

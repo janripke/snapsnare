@@ -142,7 +142,7 @@ def show():
             connector.commit()
             connector.close()
 
-            flash('Je sample is bijgewerkt', 'info')
+            flash('Your sample is updated successfully.', 'info')
             return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
 
         user = user_repository.find_by_uuid(user_uuid)
@@ -172,5 +172,5 @@ def show():
 
         connector.commit()
         connector.close()
-        flash('Je sample is geplaatst', 'info')
+        flash('Your sample is posted successfully.', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))

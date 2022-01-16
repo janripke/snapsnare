@@ -86,5 +86,5 @@ def show():
 
     connector.commit()
     connector.close()
-    flash('De registratiegegevens zijn bijgewerkt', 'info')
+    flash('The registration is updated successfully.', 'info')
     return redirect(url_for('registrations.show'))

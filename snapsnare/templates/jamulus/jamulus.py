@@ -45,7 +45,7 @@ def show():
 
         status = jamulus.status()
 
-        about = section_repository.find_by(name='Over ons', active=1)
+        about = section_repository.find_by(name='About us', active=1)
         team = section_repository.find_by(name='Team', active=1)
 
         code = {

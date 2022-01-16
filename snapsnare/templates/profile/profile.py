@@ -63,7 +63,7 @@ def show():
     user = user_repository.find_by_uuid(user['uuid'])
     connector.commit()
     connector.close()
-    flash('Je profielgegevens zijn bijgewerkt', 'info')
+    flash('Your account details are updated successfully.', 'info')
     return render_template('profile/profile.html', sections=sections, user=user)
 
 

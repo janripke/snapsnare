@@ -22,11 +22,11 @@ def load():
     if jammers:
         jammers['jammers'] = Markup(jammers.get('jammers'))
         dt_created_at = datetime.strptime(jammers.get('created_at'), '%Y-%m-%d %H:%M:%S.%f')
-        jammers['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+        jammers['created_at_formatted'] = dt_created_at.strftime('%d %B at %H:%M')
 
     if not jammers:
         jammers = {
-            'jammers': 'Geen actieve jammers'
+            'jammers': 'No active jammers'
         }
 
     icecast_status = icecast_status_repository.find_by(order_by='id desc', limit=1)

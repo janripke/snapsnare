@@ -29,7 +29,7 @@ def show():
 
         registration = registration_repository.find_by_uuid(uuid_)
         if registration['state'] != 'approved':
-            flash('Onverwachte registratie status', 'danger')
+            flash('Unexpected registration state.', 'danger')
             return redirect(url_for('registrations.show'))
 
         user_repository = UserRepository(connector)

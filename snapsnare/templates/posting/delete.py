@@ -51,5 +51,5 @@ def show():
         connector.commit()
         connector.close()
 
-        flash('Je bericht is verwijderd', 'info')
+        flash('Your posting is removed successfully.', 'info')
         return redirect(url_for(f"{section['endpoint']}.show", section=section['uuid']))

@@ -35,19 +35,19 @@ def show():
     user = user_repository.find_by_username(username)
 
     if not user:
-        flash('Ongeldige gebruikersnaam of wachtwoord', 'danger')
+        flash('Invalid username or password.', 'danger')
         return redirect(url_for('login.show'))
 
     registration_repository = RegistrationRepository(connector)
     registration = registration_repository.find_by(id=user['rgn_id'], active=1)
     if registration['state'] == 'blocked':
-        flash('Deze gebruiker is geblokkeerd', 'danger')
+        flash('This account is blocked.', 'danger')
         return redirect(url_for('login.show'))
 
     registered_user = User(user['uuid'], user['username'], user['password'])
 
     if not registered_user.check_password(password):
-        flash('Ongeldige gebruikersnaam of wachtwoord', 'danger')
+        flash('Invalid username or password.', 'danger')
         return redirect(url_for('login.show'))
 
     role_repository = RoleRepository(connector)

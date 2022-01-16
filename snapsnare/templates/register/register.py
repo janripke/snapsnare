@@ -41,12 +41,11 @@ def show():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         nickname = request.form['nickname']
-        phone_number = request.form['phone_number']
 
         registered = register_repository.is_registered(username)
         if registered:
             connector.close()
-            flash('Deze gebruiker heeft zich al geregistreerd', 'danger')
+            flash('This account is already registered.', 'danger')
             return redirect(url_for('register.show'))
 
         role = role_repository.find_by(role='user', active=1)
@@ -58,7 +57,6 @@ def show():
             'first_name': first_name,
             'last_name': last_name,
             'nickname': nickname,
-            'phone_number': phone_number,
             'rle_id': role['id']
         }
 
@@ -81,5 +79,5 @@ def show():
 
         gmail.send_email(credentials, registration['username'], "activeer je account bij snapsnare.org", content)
 
-        flash('De registratie is geslaagd, er wordt een activerings e-mail gestuurd.', 'success')
+        flash('Your account is successfully registered, an activation email is send.', 'success')
         return redirect(url_for('register.show'))

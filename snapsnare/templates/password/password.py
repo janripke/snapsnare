@@ -47,17 +47,17 @@ def show():
 
     user = user_repository.find_by_username(session['username'])
     if not user:
-        flash('Ongeldige gebruikersnaam', 'danger')
+        flash('Invalid username.', 'danger')
         return redirect(url_for('password.show', uuid=uuid_))
 
     registered_user = User(user['uuid'], user['username'], user['password'])
     if not registered_user.check_password(password_):
-        flash('Ongeldig wachtwoord', 'error')
+        flash('Invalid password.', 'error')
         return redirect(url_for('password.show', uuid=uuid_))
 
     # the given passwords do not match
     if new_password != repeat:
-        flash('De opgegeven nieuwe wachtwoorden komen niet overeen', 'danger')
+        flash('The newly entered passwords do not match.', 'danger')
         return redirect(url_for('password.show', uuid=uuid_))
 
     # change the password
@@ -70,5 +70,5 @@ def show():
     connector.close()
 
     # show the login screen
-    flash('Wachtwoord sucessvol bijgewerkt', 'success')
+    flash('The password is updated successfully.', 'success')
     return redirect(url_for('password.show', uuid=uuid_))

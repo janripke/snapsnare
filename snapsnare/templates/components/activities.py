@@ -43,7 +43,7 @@ def load():
         activity['slide_count'] = 0
 
         dt_created_at = datetime.strptime(activity['created_at'], '%Y-%m-%d %H:%M:%S.%f')
-        activity['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+        activity['created_at_formatted'] = dt_created_at.strftime('%d %B at %H:%M')
 
         # for now we only use .png, .jpg and .gif images
         # slides_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], activity['uuid'])

@@ -35,7 +35,7 @@ def show():
             role = role_repository.find_by(id=registration['rle_id'])
 
             dt_created_at = datetime.strptime(registration['created_at'], '%Y-%m-%d %H:%M:%S.%f')
-            registration['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+            registration['created_at_formatted'] = dt_created_at.strftime('%d %B at %H:%M')
             registration['role'] = role['role']
 
         connector.close()

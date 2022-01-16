@@ -43,7 +43,7 @@ def show():
             activity = activity_repository.find_by(uuid=uuid_)
 
             if user['id'] != activity['usr_id']:
-                flash('Je mag dit bericht niet bijwerken', 'danger')
+                flash('You are not allowed to change this posting.', 'danger')
                 posting_ = {
                     'section': section_uuid,
                     'uuid': uuid_,
@@ -101,7 +101,7 @@ def show():
     if uuid_:
         activity = activity_repository.find_by(uuid=uuid_)
         if user['id'] != activity['usr_id']:
-            flash('Je mag dit bericht niet bijwerken', 'danger')
+            flash('You are not allowed to update this posting.', 'danger')
             posting_ = {
                 'section': section_uuid,
                 'uuid': uuid_,
@@ -122,7 +122,7 @@ def show():
         connector.commit()
         connector.close()
 
-        flash('Je bericht is bijgewerkt', 'info')
+        flash('Your posting is updated successfully.', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))
 
     user = user_repository.find_by_uuid(user_uuid)
@@ -150,5 +150,5 @@ def show():
 
     connector.commit()
     connector.close()
-    flash('Je bericht is geplaatst', 'info')
+    flash('Your posting is created successfully.', 'info')
     return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))

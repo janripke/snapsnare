@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <h4>Sample maken</h4>
+        <h4>Create sample</h4>
         <h5 class="card-title">{{upload.first_name}} {{upload.last_name}}</h5>
         <hr>
 
@@ -8,13 +8,14 @@
               enctype="multipart/form-data">
 
             <div class="mb-3">
-                <label for="title" class="form-label">Titel</label>
+                <label for="title" class="form-label">Title</label>
                 <input id="title" type="text" class="form-control" name="title" required autofocus
                        value="{{upload.title}}">
             </div>
 
+
             <div class="mb-3">
-                <label for="access" class="form-label">Delen</label>
+                <label for="access" class="form-label">Share</label>
                 <select id="access" class="form-select" name="access">
                     {% for access in access_modifiers %}
                     {% if upload.access==access.modifier %}
@@ -58,23 +59,24 @@
             </div>
 
 
-
             <div class="mb-3">
-                <label for="chord_schema" class="form-label">Akkoorden schema</label>
+                <label for="chord_schema" class="form-label">Chord schema</label>
                 <input id="chord_schema" type="text" class="form-control" name="chord_schema"
                        value="{{upload.chord_schema}}">
             </div>
+
 
             <div class="mb-3">
                 <label for="file-upload" class="form-label">Upload sample</label>
                  <input id="file-upload" type="file" name="file" accept="audio/*" />
             </div>
 
+
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{upload.uuid}}">
             <input id="user" type="hidden" name="user" class="form-control" value="{{upload.user}}">
             <input id="section" type="hidden" name="section" class="form-control" value="{{upload.section}}">
             <p></p>
-            <button type="submit" class="btn btn-snapsnare w-100">Plaatsen</button>
+            <button type="submit" class="btn btn-snapsnare w-100">Post</button>
         </form>
     </div>
 </div>

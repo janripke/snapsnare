@@ -57,7 +57,7 @@ def show():
 
             connector.commit()
             connector.close()
-            flash('De instrument details zijn bijgewerkt.', 'info')
+            flash('Your instrument details are updated successfully.', 'info')
             return redirect(url_for('instruments.show'))
 
         instrument_ = {
@@ -67,5 +67,5 @@ def show():
         instrument_repository.insert(instrument_)
         connector.commit()
         connector.close()
-        flash('Het instrument is toegevoegd.', 'info')
+        flash('Your instrument is added successfully.', 'info')
         return redirect(url_for('instruments.show'))

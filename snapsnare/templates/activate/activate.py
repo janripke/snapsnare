@@ -26,7 +26,7 @@ def show():
         registration = registration_repository.find_by(uuid=uuid_, active=1, state='new')
         if not registration:
             connector.close()
-            flash('Deze gebruiker is al geactiveerd', 'danger')
+            flash('This account is already activated.', 'danger')
             return render_template('activate/activate.html', code=code.load())
 
         role = role_repository.find_by(id=registration['rle_id'], active=1)
@@ -36,7 +36,6 @@ def show():
             'first_name': registration['first_name'],
             'last_name': registration['last_name'],
             'nickname': registration['nickname'],
-            'phone_number': registration['phone_number'],
             'rgn_id': registration['id'],
             'rle_id': role['id']
         }
@@ -49,5 +48,5 @@ def show():
         registration_repository.update(registration)
         connector.commit()
         connector.close()
-        flash('Gebruiker geactiveerd', 'success')
+        flash('Your account is activated successfully and ready for use.', 'success')
         return render_template('activate/activate.html', code=code.load())

@@ -57,7 +57,7 @@ def show():
 
             connector.commit()
             connector.close()
-            flash('De genre details zijn bijgewerkt.', 'info')
+            flash('Your genre details are updated successfully.', 'info')
             return redirect(url_for('genres.show'))
 
         genre_ = {
@@ -67,5 +67,5 @@ def show():
         genre_repository.insert(genre_)
         connector.commit()
         connector.close()
-        flash('Het genre is toegevoegd.', 'info')
+        flash('Your genre is added successfully.', 'info')
         return redirect(url_for('genres.show'))

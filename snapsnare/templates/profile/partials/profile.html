@@ -1,8 +1,7 @@
 <div class="card">
     <div class="card-body">
-        <!-- <h4>Profiel</h4>
-        <h6>Wijzig hier je profielgegevens.</h6> -->
-        <h4>Edit your account details here.</h4>
+        <h4>Profile</h4>
+        <h6>Use this form to change the details of your account.</h6>
         <hr>
 
         <form action="{{ url_for('profile.show')}}?uuid={{user.uuid}}" id="profile-form" class="form-signin ajax"
@@ -11,7 +10,7 @@
                 <label for="email" class="form-label">Email</label>
                 <input id="email" type="email" class="form-control" name="username" aria-describedby="emailHelp"
                 required readonly="readonly" value="{{ user.username }}">
-                <div id="emailHelp" class="form-text">We will never share your email address with others.</div>
+                <div id="emailHelp" class="form-text">We never share your email address with others.</div>
             </div>
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
@@ -37,6 +36,7 @@
                 <label for="phoneNumber" class="form-label">Phone number</label>
                 <input id="phoneNumber" type="text" class="form-control" name="phone_number"
                    value="{{user.phone_number}}">
+                <div id="phoneNumberHelp" class="form-text">We never share your phone number with others.</div>
             </div>
 
             <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{user.uuid}}">

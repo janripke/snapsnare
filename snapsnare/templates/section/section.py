@@ -71,7 +71,7 @@ def show():
 
             connector.commit()
             connector.close()
-            flash('De sectie details zijn bijgewerkt.', 'info')
+            flash('The section configuration is updated.', 'info')
             return redirect(url_for('sections.show'))
 
         section_ = {
@@ -85,5 +85,5 @@ def show():
         section_repository.insert(section_)
         connector.commit()
         connector.close()
-        flash('De sectie is toegevoegd.', 'info')
+        flash('The section configuration is added successfully.', 'info')
         return redirect(url_for('sections.show'))

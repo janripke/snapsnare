@@ -8,7 +8,7 @@ def load():
     connector = current_app.connector
     section_repository = SectionRepository(connector)
     property_repository = PropertyRepository(connector)
-    about = section_repository.find_by(name='Over ons', active=1)
+    about = section_repository.find_by(name='About us', active=1)
     team = section_repository.find_by(name='Team', active=1)
 
     code = {

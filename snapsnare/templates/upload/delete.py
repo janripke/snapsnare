@@ -46,5 +46,5 @@ def show():
         connector.commit()
         connector.close()
 
-        flash('Je sample is verwijderd', 'info')
+        flash('Your sample is removed successfully.', 'info')
         return redirect(url_for('{}.show'.format(section['endpoint']), section=section['uuid']))

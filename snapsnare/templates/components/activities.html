@@ -13,8 +13,8 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownPosting">
-                        <li><a class="dropdown-item" href="/posting?section={{activity.section}}&uuid={{activity.uuid}}"><i class="far fa-edit"></i> Edit message</a></li>
-                        <li><a class="dropdown-item" href="/posting/delete?section={{activity.section}}&uuid={{activity.uuid}}"><i class="fas fa-times"></i> Delete message</a></li>
+                        <li><a class="dropdown-item" href="/posting?section={{activity.section}}&uuid={{activity.uuid}}"><i class="far fa-edit"></i> Edit post</a></li>
+                        <li><a class="dropdown-item" href="/posting/delete?section={{activity.section}}&uuid={{activity.uuid}}"><i class="fas fa-times"></i> Delete post</a></li>
                     </ul>
                 </div>
                 {% endif %}
@@ -81,7 +81,7 @@
 
     {% for clip in activity.clips %}
     <video class="w-100" src="{{clip.url}}" controls>
-        Your browser does not support <code>video</code>.
+        Your browser does not support the element <code>video</code>.
     </video>
     {% endfor %}
 </div>

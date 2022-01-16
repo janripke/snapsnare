@@ -34,10 +34,10 @@ def load():
         snap['section'] = section['uuid']
 
         dt_created_at = datetime.strptime(snap['created_at'], '%Y-%m-%d %H:%M:%S.%f')
-        snap['created_at_formatted'] = dt_created_at.strftime('%d %B om %H:%M')
+        snap['created_at_formatted'] = dt_created_at.strftime('%d %B at %H:%M')
 
         dt_updated_at = datetime.strptime(snap['updated_at'], '%Y-%m-%d %H:%M:%S.%f')
-        snap['updated_at_formatted'] = dt_updated_at.strftime('%d %B om %H:%M')
+        snap['updated_at_formatted'] = dt_updated_at.strftime('%d %B at %H:%M')
 
         clips_folder = os.path.join(properties['current.dir'], 'assets', snap['uuid'])
         if os.path.isdir(clips_folder):
