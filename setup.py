@@ -66,7 +66,7 @@ setup(
         'flask_restful',
         'flask-jwt-extended',
         'flask-login',
-        'flask==1.1.2',
+        'flask==2.0.2',
         'click',
         'psycopg2-binary',
         'requests',
