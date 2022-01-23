@@ -77,7 +77,7 @@ def show():
         connector.commit()
         connector.close()
 
-        gmail.send_email(credentials, registration['username'], "activeer je account bij snapsnare.org", content)
+        gmail.send_email(credentials, registration['username'], "Activate your account on snapsnare.org", content)
 
         flash('Your account is successfully registered, an activation email is send.', 'success')
         return redirect(url_for('register.show'))
