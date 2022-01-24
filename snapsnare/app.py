@@ -47,6 +47,7 @@ from snapsnare.templates.upload.delete import upload_delete
 from snapsnare.templates.snaps.snaps import snaps
 from snapsnare.templates.login.login import login
 from snapsnare.templates.login.user import User
+from snapsnare.templates.password_forgotten.password_forgotten import password_forgotten
 
 application = Flask(__name__)
 api = Api(application)
@@ -111,6 +112,7 @@ application.register_blueprint(instrument)
 application.register_blueprint(snaps)
 application.register_blueprint(upload)
 application.register_blueprint(upload_delete)
+application.register_blueprint(password_forgotten)
 
 
 @login_manager.user_loader
