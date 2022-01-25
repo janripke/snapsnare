@@ -1,6 +1,6 @@
 # Introduction
 
-This document describes the datamodel of the snapsnare datastore.
+This document describes the snapsnare datastore.
 
 # Tables
 
