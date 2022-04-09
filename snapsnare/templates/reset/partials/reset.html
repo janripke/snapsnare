@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-body">
+        <h4>Reset password</h4>
+        <h6>Use this form to change your password</h6>
+        <hr>
+
+        <form action="{{ url_for('reset.show') }}?uuid={{user.uuid}}" id="password-form" class="form-signin ajax"
+              method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" class="form-control" name="username" aria-describedby="emailHelp"
+                       required readonly="readonly" value="{{ user.username }}">
+                <div id="emailHelp" class="form-text">We will never share your email address with others.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Current password</label>
+                <input id="password" type="password" class="form-control" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="new_password" class="form-label">New password</label>
+                <input id="new_password" type="password" class="form-control" name="new_password" required>
+            </div>
+            <div class="mb-3">
+                <label for="repeat" class="form-label">Repeat</label>
+                <input id="repeat" type="password" class="form-control" name="repeat" required>
+            </div>
+
+            <input id="uuid" type="hidden" name="uuid" class="form-control" value="{{user.uuid}}">
+            <button type="submit" class="btn btn-snapsnare">Save</button>
+        </form>
+    </div>
+</div>

@@ -44,6 +44,7 @@ from snapsnare.templates.instruments.instruments import instruments
 from snapsnare.templates.instrument.instrument import instrument
 from snapsnare.templates.upload.upload import upload
 from snapsnare.templates.upload.delete import upload_delete
+from snapsnare.templates.reset.reset import reset
 from snapsnare.templates.snaps.snaps import snaps
 from snapsnare.templates.login.login import login
 from snapsnare.templates.login.user import User
@@ -109,6 +110,7 @@ application.register_blueprint(genres)
 application.register_blueprint(genre)
 application.register_blueprint(instruments)
 application.register_blueprint(instrument)
+application.register_blueprint(reset)
 application.register_blueprint(snaps)
 application.register_blueprint(upload)
 application.register_blueprint(upload_delete)

@@ -10,7 +10,8 @@ from flask import current_app
 from snapsnare.repositories.user.user_repository import UserRepository
 from snapsnare.repositories.section.section_repository import SectionRepository
 from snapsnare.repositories.reset.reset_repository import ResetRepository
-
+from snapsnare.repositories.template.template_repository import TemplateRepository
+from snapsnare.system import utils, gmail
 
 password_forgotten = Blueprint('password_forgotten', __name__, template_folder='templates')
 
@@ -50,4 +51,21 @@ def show():
         }
         reset_repository.insert(reset)
 
+        properties = current_app.properties
+        settings = utils.load_json(properties, 'snapsnare.json')
+        credentials = settings['gmail']
+        snapsnare = settings['snapsnare']
+        host = snapsnare['host']
+
+        template_repository = TemplateRepository(connector)
+        template = template_repository.find_by(template='reset')
+        content = template['content']
+        content = content.replace("{host}", host)
+        content = content.replace("{uuid}", reset['uuid'])
+
+        connector.commit()
+
+        gmail.send_email(credentials, reset['username'], "Reset your account on snapsnare.org", content)
+
+        flash('A reset request is successfully created. Please check your e-mail to reset your password.', 'success')
         return redirect(url_for('login.show'))
